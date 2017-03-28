@@ -1,2 +1,0 @@
-# OCRoj
-Projet S3#
