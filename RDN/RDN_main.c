@@ -41,6 +41,10 @@ void train()
 			printf("%f xor %f = %f\n", inputs[i][0], inputs[i][1], nf_output);
 
 			n_f -> error = derivative(nf_output) * (results[i] - nf_output);
+			n_3 -> error = derivative(n_f -> inputs[2]) * n_f -> weights[2] * n_f -> error;
+			n_2 -> error = derivative(n_f -> inputs[1]) * n_f -> weights[1] * n_f -> error;
+			n_1 -> error = derivative(n_f -> inputs[0]) * n_f -> weights[0] * n_f -> error;
+			
 			n_f -> weights[0] += n_f -> error * n_f -> inputs[0];
 			n_f -> weights[1] += n_f -> error * n_f -> inputs[1];
 			n_f -> weights[2] += n_f -> error * n_f -> inputs[2];
@@ -51,7 +55,7 @@ void train()
 			n_f -> weights[2] += derivativ * n_f -> error * n_f -> inputs[2];*/
 			n_f -> bias += n_f -> error;
 
-			n_3 -> error = derivative(n_f -> inputs[2]) * n_f -> weights[2] * n_f -> error;
+			
 			n_3 -> weights[0] += n_3 -> error * n_3 -> inputs[0];
 			n_3 -> weights[1] += n_3 -> error * n_3 -> inputs[1];
 			/*n_3 -> error = n_f -> weights[2] * n_f -> error;
@@ -60,7 +64,6 @@ void train()
 			n_3 -> weights[1] += derivativ * n_3 -> error * n_3 -> inputs[1];*/
 			n_3 -> bias += n_3 -> error;
 
-			n_2 -> error = derivative(n_f -> inputs[1]) * n_f -> weights[1] * n_f -> error;
 			n_2 -> weights[0] += (n_2 -> error * n_2 -> inputs[0]);
 			n_2 -> weights[1] += (n_2 -> error * n_2 -> inputs[1]);
 			/*n_2 -> error = n_f -> weights[1] * n_f -> error;
@@ -69,7 +72,6 @@ void train()
 			n_2 -> weights[1] += derivativ * n_2 -> error * n_2 -> inputs[1];*/
 			n_2 -> bias += n_2 -> error;
 
-			n_1 -> error = derivative(n_f -> inputs[0]) * n_f -> weights[0] * n_f -> error;
 			n_1 -> weights[0] += n_1 -> error * n_1 -> inputs[0];
 			n_1 -> weights[1] += n_1 -> error * n_1 -> inputs[1];
 			/*n_1 -> error = n_f -> weights[0] * n_f -> error;
