@@ -22,7 +22,6 @@ struct neuron {
 	double *inputs;
 	double bias;
 	double error;
-	//int is_final;
 };
 
 struct neuron* init_neuron(size_t len)
