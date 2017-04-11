@@ -20,20 +20,20 @@ struct neuron {
 	size_t len;
 	double val;
 	double *weights;
-	struct neuron *inputs;
 	double error;
+	//struct neuron *next;    //pointer on next neuron in current layer
 	//int type //1 = input layer ; 2 = hidden 3 = ouputs
 };
 
-struct neuron init_neuron(size_t len, struct neuron *prec)
+struct neuron *init_neuron(size_t len , struct neuron *prec)
 {
-	struct neuron neuron = malloc(sizeof(struct neuron));
-	neuron -> inputs      = prec;
-	if (prec != 0)
+	struct neuron *neuron = malloc(sizeof(struct neuron));
+	//neuron -> inputs = prec;
+	if (len != 0)
 	{
 		neuron -> weights = malloc(len * sizeof(double));
 		for (size_t i = 0 ; i < len ; i++)
-			*(neuron -> weights + i) = rand_1_1();//rand_0_1();
+			(neuron -> weights)[i] = rand_1_1();//rand_0_1();
 	}
 	//else weights = [];
 	neuron -> len = len;
@@ -61,24 +61,24 @@ double n_output(struct neuron *inputs_begin, double *weights_begin, size_t len)
 {
 	double retour = 0;
 	for (int i = 0 ; i < len ; i++)
-		retour += (inputs_begin + i) -> val * *(weights_begin + i);
+		retour += ((inputs_begin + i) -> val) * *(weights_begin + i);
 
 	return sigmoid(retour);
 }
-
-struct neuron *init_inputs_layer()
+struct neuron **init_inputs_layer()
 {
-	struct neuron *neuron = malloc(2 * sizeof(struct neuron));
+	struct neuron **layer = malloc(2 * sizeof(struct neuron));
 	for (size_t i = 0 ; i < 2 ; i++)
 	{
-		neuron[i] = init_neuron(2, NULL);
+		layer[i] = init_neuron(2, NULL);
 	}
-
+	return layer;
 }
 
-struct neuron *init__layers(struct neuron *prec)
+struct neuron **init__layers(struct neuron *prec)
 {
-	struct neuron *neuron = malloc(3 * sizeof(struct neuron));
+	struct neuron **layer = malloc(3 * sizeof(struct neuron));
 	for (size_t i = 0 ; i < 3 ; i++)
-		*(neuron + i) = init_neuron(3, prec);
+		*(layer + i) = init_neuron(3, prec);
+	return layer;
 }
