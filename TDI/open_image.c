@@ -1,8 +1,3 @@
-/* Headers */
-# include <SDL/SDL.h>
-# include <SDL2/SDL_image.h>
-# include "pixel_operations.c"
-
 /*Ouvre une image*/
 
 int errx();
@@ -10,20 +5,21 @@ int warnx();
 
 void wait_for_keypressed(void)
 {
-  SDL_Event             event;
-  // Infinite loop, waiting for event
+  SDL_Event event;
   for (;;)
   {
-    // Take an event
-    SDL_PollEvent( &event );
-    // Switch on event type
+  SDL_PollEvent(&event);
     switch (event.type)
     {
-    // Someone pressed a key -> leave the function
-    case SDL_KEYDOWN: return;
-    default: break;
+      case SDL_KEYDOWN:
+        switch (event.key.keysym.sym)
+        {
+          case SDLK_SPACE:
+            return;
+          default: break;
+        }
+      default: break;
     }
-  // Loop until we got the expected event
   }
 }
 
@@ -57,8 +53,8 @@ SDL_Surface* display_image(SDL_Surface *img)
   if ( screen == NULL )
   {
     // error management
-    //errx(1, "Couldn't set %dx%d video mode: %s\n",
-         //img->w, img->h, SDL_GetError());
+    errx(1, "Couldn't set %dx%d video mode: %s\n",
+         img->w, img->h, SDL_GetError());
   }
 
   /* Blit onto the screen surface */
@@ -72,30 +68,4 @@ SDL_Surface* display_image(SDL_Surface *img)
   wait_for_keypressed();
   // return the screen for further uses
   return screen;
-}
-
-int main()
-{
-  init_sdl();
-  SDL_Surface *image = load_image("/home/thomas/Images/ACE.jpg");
-  for (int i = 0; i < (image->w); i++)
-  {
-    for (int j = 0; j < (image->h); j++)
-    {
-      Uint32 current_pixel = getpixel(image, i, j);
-      Uint8 r;
-      Uint8 g;
-      Uint8 b;
-      SDL_GetRGB(current_pixel, image->format, &r, &g, &b);
-      Uint8 grey_level = (r*0.3 + g*0.59 + b*0.11)/3;
-      r = grey_level;
-      g = grey_level;
-      b = grey_level;
-      Uint32 exit_pixel = SDL_MapRGB(image->format, r, g, b);
-      putpixel(image, i, j, exit_pixel);
-    }
-  }
-  display_image(image);
-  SDL_FreeSurface(image);
-  return 0;
 }
