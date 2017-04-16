@@ -52,11 +52,27 @@ double derivative(double x)
 	return x * (1 - x);
 }
 
+/*
 double n_output(double *inputs_begin, double *weights_begin, double bias, size_t len)
 {
 	double retour = bias;
 	for (int i = 0 ; i < len ; i++)
 		retour += *(inputs_begin + i) * *(weights_begin + i);
+
+	return sigmoid(retour);
+}
+*/
+
+double n_output(struct neuron *neuron)
+{
+	double len      = neuron -> len;
+	double bias     = neuron -> bias;
+	double *weights = neuron -> weights;
+	double *inputs  = neuron -> inputs;
+
+	double retour = bias;
+	for (size_t i = 0 ; i < len ; i++)
+		retour += *(inputs + i) * *(weights + i);
 
 	return sigmoid(retour);
 }

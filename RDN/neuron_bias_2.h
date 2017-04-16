@@ -17,18 +17,17 @@ double rand_1_1()
 	return i;
 }
 
-struct neuron {
+typedef struct neuron{
 	size_t len;
 	size_t inputs;
 	double val;
 	double *weights;
 	double error;
-};
-typedef struct neuron neuron;
+} NEURON;
 
-struct neuron *init_neuron(size_t len, size_t inputs)//, struct neuron *prec)
+NEURON *init_neuron(size_t len, size_t inputs)//, struct neuron *prec)
 {
-	struct neuron *neuron = malloc(sizeof(neuron));
+	NEURON *neuron = malloc(sizeof(NEURON));
 	if (len != 0)
 	{
 		neuron -> weights = malloc(len * sizeof(double));
@@ -50,19 +49,19 @@ double derivative(double x)
 	return x * (1 - x);
 }
 
-double n_output(struct neuron *inputs_begin, double *weights_begin, size_t len)
+double n_output(NEURON *inputs_begin, double *weights_begin, size_t len)
 {
 	double retour = 0;
 	for (size_t i = 0 ; i < len ; i++)
-		retour += ((inputs_begin + i) -> val) * *(weights_begin + i);
+		retour = retour + ((inputs_begin + i) -> val) * *(weights_begin + i);
 
 	return sigmoid(retour);
 }
 
 
-struct neuron **init__network()//size_t size)
+NEURON **init__network()//size_t size)
 {
-	struct neuron** network = malloc(sizeof(struct neuron) * 6); //6 = nb of n.    9 = list of elem of weigths     sizeof(double) * 9 
+	NEURON** network = malloc(sizeof(NEURON*) * 6); //6 = nb of n.    9 = list of elem of weigths     sizeof(double) * 9 
 	size_t count = 0;
 	size_t lvl   = 0;
 
@@ -81,6 +80,27 @@ struct neuron **init__network()//size_t size)
 		network[count] = init_neuron(3 , 5 - 0 - 3);
 	return network;
 }
+/*
+void init__network(NEURON* network[])//size_t size)
+{
+	size_t count = 0;
+	size_t lvl   = 0;
+
+	for (; count < 2 ; count++)     //nb of inputs
+		network[count] = init_neuron(0, 0);
+
+	for (; count < 2 + 3 ; count++) //first hidden layer
+		network[count] = init_neuron(2, 0);
+
+	for (; count < 2 + 3 * 1; count++){ //other hidden layers
+		network[count] = init_neuron(3, 2 + lvl * 3);
+		if (!( (count - 1) % 3))
+			lvl ++;
+	}
+	for (; count < 6 ; count++)     //output layer
+		network[count] = init_neuron(3 , 5 - 0 - 3);
+}
+*/
 
 /*
 void kill_neuron(struct neuron *neuron)

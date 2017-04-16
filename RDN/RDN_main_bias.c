@@ -10,12 +10,9 @@ void train(char *argv[])
 	}; 
 
 	double results[4] = {1,0,1,0};
-	neuron **network = init__network();
-	/*
 	struct neuron *inputs_layer = init_inputs_layer();
 	struct neuron *hidden_layer = init__layer(inputs_layer);
 	struct neuron *output_layer = init__layer(hidden_layer);
-	*/
 	/*
 	struct neuron *n_1 = init_neuron(2);
 	struct neuron *n_2 = init_neuron(2);
