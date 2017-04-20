@@ -4,3 +4,5 @@
 void train();
 
 int verif(double tab[]);
+
+void save();
