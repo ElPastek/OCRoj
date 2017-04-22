@@ -11,7 +11,7 @@ void To_Black_And_White(SDL_Surface *surface)
       Uint8 g;
       Uint8 b;
       SDL_GetRGB(current_pixel, surface->format, &r, &g, &b);
-      if ((0.212671f*r + 0.715160f*g + 0.072169f*b) <= 180)
+      if ((0.212671f*r + 0.715160f*g + 0.072169f*b) <= 170)
       {
         r = g = b = 0;
       }

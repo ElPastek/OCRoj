@@ -11,13 +11,13 @@
 int main()
 {
   init_sdl();
-  SDL_Surface *image = load_image("/home/thomas/Images/Lorem_Ipsum.jpg");
+  SDL_Surface *image = load_image("/home/thomas/Images/ACE.jpg");
   display_image(image);
   To_GreyLevel(image);
   display_image(image);
-  //To_Black_And_White(image);
+  To_Black_And_White(image);
   //To_Black_On_White(image);
-  //display_image(image);
+  display_image(image);
   SDL_FreeSurface(image);
   return 0;
 }
