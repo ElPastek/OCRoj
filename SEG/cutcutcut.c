@@ -8,12 +8,12 @@
 
 void Cut(SDL_Surface* img, int xory, int where, int from, int to){
 	if(xory){ //y, vertically
-		for(int y = from ; y < img->h && y < to ; ++y){ 
+		for(int y = from ; y < img->h && y < to ; ++y){
 			putpixel(img, where, y, SDL_MapRGB(img->format, 255, 0, 0));
 		}
 	}
 	else{ //x, horizontally
-		for(int x = from ; x < img->w && x < to ; ++x){ 
+		for(int x = from ; x < img->w && x < to ; ++x){
 			putpixel(img, x, where, SDL_MapRGB(img->format, 255, 0, 0));
 		}
 	}
@@ -26,7 +26,7 @@ void MakingLines(SDL_Surface* img)
 	while(y < img->h){
 		x = 0;
 		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-		while(x < img->w && r != 0){ 
+		while(x < img->w && r != 0){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 			++x;
 		}
@@ -39,7 +39,7 @@ void MakingLines(SDL_Surface* img)
 	while(x < img->w){
 		y = 0;
 		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-		while(y < img->h && r != 0){ 
+		while(y < img->h && r != 0){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 			++y;
 		}
@@ -54,13 +54,13 @@ void MakingLines(SDL_Surface* img)
 {
 	int thresh = 25, blanks_count = 0, black_spotted = 0;
 	Uint32 pxl;
-	Uint8 r, g, b; 
+	Uint8 r, g, b;
 	for(int y = 0, y < img->h, ++y){
 		for(int x = 0, x < img->w, ++x){
 			pxl = getpixel(img, x, y);
 			SDL_GetRGB(pxl, img->format, &r, &g, &b);
 			if(r==255, g==255, b==255){
-				
+
 			}
 		}
 	}
@@ -84,7 +84,7 @@ void MakingLines(SDL_Surface* img)
 				y_tmp_min = y - 1;
 			}
 			if(making_block && r==0 && g==0 && b==0){
-				x_tmp_max = x > x_tmp_max ? x : x_tmp_max; 
+				x_tmp_max = x > x_tmp_max ? x : x_tmp_max;
 			}
 			++x;
 		}
