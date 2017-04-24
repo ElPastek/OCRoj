@@ -1,5 +1,6 @@
 #include "lecture.h"
 #include "neuron_2.h"
+#define TAILLE_MAX 1000
 
 size_t nb_ins;
 size_t nb_col;
@@ -56,7 +57,7 @@ void save()
 	fclose(fichier);
 }*/
 
-void read(double inputs[])
+void eval(double inputs[])
 {
 	size_t j = 0;
 	//propagation of values
@@ -67,9 +68,48 @@ void read(double inputs[])
 		network[j] -> val = n_output(network[j], network);
 }
 
-void find()
+size_t find()
 {
+	size_t retour = nb_ins + nb_col * nb_hne;
+	double max    = network[nb_ins + nb_col * nb_hne] -> val;
+	for (size_t i = nb_ins + nb_col * nb_hne + 1; i < nb_tot; i++) {
+		if ((network[i] -> val) > max) {
+			max = network[i] -> val;
+			retour = i;
+		}
+	}
+	return retour + nb_out - nb_tot;
+}
 
+void read()
+{
+	FILE* fichier_O = NULL;
+	FILE* fichier_I = NULL;
+	fichier_O = fopen("outputs_RDN.txt", "w+");
+	fichier_I = fopen("inputs_RDN.txt" , "r");
+	rewind(fichier_I);
+	rewind(fichier_O);
+	size_t nb_scan;
+	char charac;
+	double inputs[nb_ins];
+	fscanf(fichier_I, "%zu", &nb_scan);
+	printf("nb_scan : %zu\n", nb_scan);
+	for (size_t i = 0 ; i < nb_scan ; i++)
+	{
+		for (size_t j = 0 ; j < nb_ins ; j++)
+		{
+			fseek(fichier_I, +1, SEEK_CUR);
+			fscanf(fichier_I, "%lf", &inputs[j]);
+		}
+		printf("inputs : %lf, %lf\n", inputs[0], inputs[1]);
+		eval(inputs);
+		size_t found = find();
+		printf("%zu\n", found);
+		charac = trans(found);
+		fputc(charac, fichier_O);
+	}
+	fclose(fichier_I);
+	fclose(fichier_O);
 }
 
 
@@ -77,7 +117,11 @@ int main(int argc, char *argv[])
 {
 	//char *path_RDN[] = "saved_RDN.txt";
 	create("saved_RDN_LBIW.txt");
-	save();
-
+	read();
+	//save();
+	/*double inputs[2] = {0 ,1};
+	eval(inputs);
+	size_t pos = find(network);
+	printf("%lf\n", network[pos] -> val);*/
 	return 0;
 }

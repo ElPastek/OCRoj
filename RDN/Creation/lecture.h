@@ -49,4 +49,4 @@ void create(char *path);
 
 void read();
 
-void find(NEURON **network);
+size_t find();//NEURON **network);
