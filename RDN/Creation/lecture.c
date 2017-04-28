@@ -32,11 +32,11 @@ void create(char *path)
 			fseek(fichier, +1, SEEK_CUR);
 			fscanf(fichier, "%lf", &weights[j]);
 		}
-		
+
 		network[nb_ins + i - 1] = init_neuron(len, inputs, weights, bias);
 	}
 	fclose(fichier);
-}	
+}
 /*
 void save()
 {
@@ -46,9 +46,9 @@ void save()
 	fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
 	for (size_t i = nb_ins ; i < nb_tot ; i++)
 	{
-		fprintf(fichier, "%zu,%lf,%zu", 
-			network[i] -> len, 
-			network[i] -> bias, 
+		fprintf(fichier, "%zu,%lf,%zu",
+			network[i] -> len,
+			network[i] -> bias,
 			network[i] -> inputs);
 		for (size_t j = 0 ; j < (network[i] -> len) ; j++)
 			fprintf(fichier, ",%lf", (network[i] -> weights)[j]);
@@ -105,7 +105,7 @@ void read()
 		eval(inputs);
 		size_t found = find();
 		printf("%zu\n", found);
-		charac = trans(found);
+		charac = trans(found, 0);
 		fputc(charac, fichier_O);
 	}
 	fclose(fichier_I);
