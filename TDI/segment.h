@@ -34,7 +34,6 @@ void MakingLines(SDL_Surface* img)
 		if(x == img->w)
 			Cut(img, 0, y, 0, x);
 		++y;
-		//Display(img);
 	}
 	x = 0;
 	while(x < img->w)
@@ -49,6 +48,5 @@ void MakingLines(SDL_Surface* img)
 		if(y == img->h)
 			Cut(img, 1, x, 0, y);
 		++x;
-		//Display(img);
 	}
 }
