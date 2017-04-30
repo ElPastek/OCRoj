@@ -24,26 +24,34 @@ void Cut(SDL_Surface* img, int xory, int where, int from, int to)
 	}
 }
 
-int CutPrecise(SDL_Surface* img, x, y, xory)
+int CutPrecise(SDL_Surface* img, int x, int y, int xory)
 {
-	Uint8 r = g = b = 255;
+	Uint8 r=255, g=255, b=255;
 	if(xory){
-		int y_ = y + 1;
-		while(y_ < img->h && r == g)
+		int y_ = y, blackpxlfound = 0;
+		while(y_ < img->h){
+			blackpxlfound = blackpxlfound || (r == 0 && g == 0);
 			++y_;
-		Cut(img, 1, x, y, y_);
+			SDL_GetRGB(getpixel(img, x, y_), img->format, &r, &g, &b);
+		}
+		if(!blackpxlfound)
+			Cut(img, 1, x, y, y_);
 		return y_;
 	}
 	else{
-		int x_ = x + 1;
-		while(x_ < img->w && r == g)
+		int x_ = x, blackpxlfound = 0;
+		while(x_ < img->w && r == g){
+			blackpxlfound = blackpxlfound || (r == 0 && g == 0);
 			++x_;
-		Cut(img, 0, y, x, x_);
+			SDL_GetRGB(getpixel(img, x_, y), img->format, &r, &g, &b);
+		}
+		if(!blackpxlfound)
+			Cut(img, 0, y, x, x_);
 		return x_;
 	}
 }
 
-void MakingLines(SDL_Surface* img)
+void MakingBlocks(SDL_Surface* img)
 {
 	int x, y = 0;
 	Uint8 r, g, b;
@@ -80,7 +88,7 @@ void MakingLines(SDL_Surface* img)
 	while(x < img->w){
 		while(y < img->h){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-			y = r == g ? CutPrecise(img, x, y, 0) : y + 1;
+			y = g==255 ? CutPrecise(img, x, y, 1) : y + 1;
 		}
 		++x;
 	}  
@@ -88,9 +96,9 @@ void MakingLines(SDL_Surface* img)
 	while(y < img->h){
 		while(x < img->w){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-			x = r == g ? CutPrecise(img, x, y, 1) : x + 1;
+			x = g==255 ? CutPrecise(img, x, y, 0) : x + 1;
 			}
-		}
 		++y;
-	}  
-}
+		}
+}  
+
