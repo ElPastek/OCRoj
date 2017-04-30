@@ -4,7 +4,7 @@
 #include <err.h>
 #include "pixel_operations.h"
 #include "cutcutcut.h"
-
+#include "intomatrices.h"
 void wait_for_keypressed(void) {
   SDL_Event event;
   for (;;) {
@@ -50,10 +50,9 @@ int main()
 	
 	SDL_Surface* image = OnLoad("ex.jpg");
 	Display(image);
-	MakingLines(image);
+	MakingBlocks(image);
 	Display(image);
-	//printf("x : %i ; y %i \n", image->w, image->h);
 	
-	//printf("%s\n", image == NULL ? "lel" : "nop");
+	
 	return 0;
 }

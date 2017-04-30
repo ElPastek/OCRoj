@@ -76,7 +76,7 @@ void MakingBlocks(SDL_Surface* img)
 			Cut(img, 1, x, 0, y);
 		++x;
 	}
-	for(int i=0 ; i<10 ; ++i){	
+	for(int i=0 ; i<3 ; ++i){	
 		x = 0, y = 0;
 		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 		while(x < img->w){
