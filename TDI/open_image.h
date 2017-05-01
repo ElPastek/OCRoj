@@ -1,7 +1,5 @@
 /*Ouvre une image*/
-
-int errx();
-int warnx();
+# include <err.h>
 
 void wait_for_keypressed(void)
 {

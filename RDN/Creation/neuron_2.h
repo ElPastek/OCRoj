@@ -90,37 +90,38 @@ NEURON **init__network(size_t nb_ins, size_t nb_col, size_t nb_hne, size_t nb_ou
 			bias[i]    = NAN;
 		}
 	}*/
-	
+
 	NEURON** network = malloc(sizeof(NEURON*) * nb_tot ); //nb of n.
 	size_t count = 0;
 	size_t lvl   = 0;
 
 	//nb of inputs
-	for (; count < nb_ins ; count++)     
+	for (; count < nb_ins ; count++)
 		network[count] = init_neuron(0, 0, NULL, NAN);//, NULL, 0);
 	//first hidden layer
 	for (; count < nb_ins + nb_hne ; count++)
 		network[count] = init_neuron(nb_ins, 0, NULL, NAN);//, weights[count - nb_ins], bias[count - nb_ins]);
 	//other hidden layers
-	for (; count < nb_ins + nb_hne * nb_col ; count++){ 
+	for (; count < nb_ins + nb_hne * nb_col ; count++){
 		network[count] = init_neuron(nb_hne, nb_ins + lvl * nb_hne, NULL, NAN);//, weights[count - nb_ins], bias[count - nb_ins]);
 		if (!( (count - 1) % nb_hne))
 			lvl ++;
 	}
 	//output layer
-	for (; count < nb_tot; count++)    
+	for (; count < nb_tot; count++)
 		network[count] = init_neuron(nb_hne , nb_tot - nb_hne - nb_out, NULL, NAN);
 	//, weights[count - nb_ins], bias[count - nb_ins]);
 	return network;
 }
 
-char trans(size_t input)
+/*
+ * mode 0 = xor
+ * mode 1 = OCR
+ */
+char trans(size_t input, size_t mode)
 {
-	if (input < 10)      //digits
-		return input + '0';
-	else if (input < 28) //upper
-		return input + 39;
-	else if (input < 54) //lower
-		return input + 61;
-	return 0;
+	if (mode)            //from 0  to 94
+		return input + 32; //from 32 to 126
+	else
+		return input + 48; //0 or 1
 }
