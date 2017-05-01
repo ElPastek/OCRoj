@@ -19,7 +19,7 @@ void create(char *path)
 	fscanf(fichier, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out);
 	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
 	network = malloc(sizeof(NEURON*) * nb_tot );
-	for (int i = 0 ; i < nb_ins ; i++)
+	for (size_t i = 0 ; i < nb_ins ; i++)
 		network[i] = init_neuron(0, 0, NULL, NAN);
 	size_t len;
 	double bias;
@@ -81,7 +81,7 @@ size_t find()
 	return retour + nb_out - nb_tot;
 }
 
-void read()
+void read(size_t mode)
 {
 	FILE* fichier_O = NULL;
 	FILE* fichier_I = NULL;
@@ -116,8 +116,9 @@ void read()
 int main(int argc, char *argv[])
 {
 	//char *path_RDN[] = "saved_RDN.txt";
+	size_t mode = argv [argc - 1];
 	create("saved_RDN_LBIW.txt");
-	read();
+	read(mode);
 	//save();
 	/*double inputs[2] = {0 ,1};
 	eval(inputs);
