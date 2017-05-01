@@ -16,7 +16,7 @@ void create(char *path)
 {
 	FILE* fichier = NULL;
 	fichier = fopen(path, "r");
-	fscanf(fichier, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out);
+	assert(fscanf(fichier, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out));
 	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
 	network = malloc(sizeof(NEURON*) * nb_tot );
 	for (size_t i = 0 ; i < nb_ins ; i++)
@@ -26,36 +26,17 @@ void create(char *path)
 	size_t inputs;
 	double *weights;
 	for (size_t i = 1 ; i < nb_col * nb_hne + nb_out + 1; i++) {
-		fscanf(fichier, "%zu,%lf,%zu", &len, &bias, &inputs);
+		assert(fscanf(fichier, "%zu,%lf,%zu", &len, &bias, &inputs));
 		weights = malloc(sizeof(double) * len);
 		for (size_t j = 0 ; j < len ; j++) {
 			fseek(fichier, +1, SEEK_CUR);
-			fscanf(fichier, "%lf", &weights[j]);
+			assert(fscanf(fichier, "%lf", &weights[j]));
 		}
 
 		network[nb_ins + i - 1] = init_neuron(len, inputs, weights, bias);
 	}
 	fclose(fichier);
 }
-/*
-void save()
-{
-	FILE* fichier = NULL;
-
-	fichier = fopen("saved_RDN_LBIW_test.txt", "w");
-	fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
-	for (size_t i = nb_ins ; i < nb_tot ; i++)
-	{
-		fprintf(fichier, "%zu,%lf,%zu",
-			network[i] -> len,
-			network[i] -> bias,
-			network[i] -> inputs);
-		for (size_t j = 0 ; j < (network[i] -> len) ; j++)
-			fprintf(fichier, ",%lf", (network[i] -> weights)[j]);
-		fprintf(fichier, "\n");
-	}
-	fclose(fichier);
-}*/
 
 void eval(double inputs[])
 {
@@ -92,20 +73,20 @@ void read(size_t mode)
 	size_t nb_scan;
 	char charac;
 	double inputs[nb_ins];
-	fscanf(fichier_I, "%zu", &nb_scan);
-	printf("nb_scan : %zu\n", nb_scan);
+	assert(fscanf(fichier_I, "%zu", &nb_scan));
+	//printf("nb_scan : %zu\n", nb_scan);
 	for (size_t i = 0 ; i < nb_scan ; i++)
 	{
 		for (size_t j = 0 ; j < nb_ins ; j++)
 		{
 			fseek(fichier_I, +1, SEEK_CUR);
-			fscanf(fichier_I, "%lf", &inputs[j]);
+			assert(fscanf(fichier_I, "%lf", &inputs[j]));
 		}
-		printf("inputs : %lf, %lf\n", inputs[0], inputs[1]);
+		//printf("inputs : %lf, %lf\n", inputs[0], inputs[1]);
 		eval(inputs);
 		size_t found = find();
 		printf("%zu\n", found);
-		charac = trans(found, 0);
+		charac = trans(found, mode);
 		fputc(charac, fichier_O);
 	}
 	fclose(fichier_I);
@@ -116,7 +97,9 @@ void read(size_t mode)
 int main(int argc, char *argv[])
 {
 	//char *path_RDN[] = "saved_RDN.txt";
-	size_t mode = argv [argc - 1];
+	size_t mode = 0;
+	if (argc == 2)
+		mode = atoi(argv[1]);
 	create("saved_RDN_LBIW.txt");
 	read(mode);
 	//save();

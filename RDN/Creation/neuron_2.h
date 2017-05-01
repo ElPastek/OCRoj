@@ -52,10 +52,8 @@ double n_output(NEURON *neuron, NEURON **network)//, NEURON *inputs)
 NEURON *init_neuron(size_t len, size_t inputs, double *weights, double bias)
 {
 	NEURON *neuron = malloc(sizeof(NEURON));
-	if (len != 0)
-	{
-		if (weights == NULL)
-		{
+	if (len != 0) {
+		if (weights == NULL) {
 			neuron -> weights = malloc(len * sizeof(double));
 			for (size_t i = 0 ; i < len ; i++)
 				(neuron -> weights)[i] = NormalDistribution(0, 1 / sqrt(len));
@@ -80,17 +78,6 @@ NEURON *init_neuron(size_t len, size_t inputs, double *weights, double bias)
 NEURON **init__network(size_t nb_ins, size_t nb_col, size_t nb_hne, size_t nb_out)//, double **weights, double *bias)
 {
 	size_t nb_tot = nb_ins + nb_col * nb_hne + nb_out;
-	/*//test NULL
-	if (weights == NULL && bias == NULL) {
-		weights = malloc((nb_tot - nb_ins) * sizeof(double));
-		bias    = malloc((nb_tot - nb_ins) * sizeof(double));
-		for (size_t i = 0 ; i < nb_tot - nb_ins ; i++)
-		{
-			weights[i] = NULL;
-			bias[i]    = NAN;
-		}
-	}*/
-
 	NEURON** network = malloc(sizeof(NEURON*) * nb_tot ); //nb of n.
 	size_t count = 0;
 	size_t lvl   = 0;

@@ -44,7 +44,7 @@ void train()//char *argv[])
 			//verification
 			size_t found = find();
 			size_t found_o = found + nb_ins + nb_hne * nb_col;
-			printf("%f xor %f = %f\n", inputs[i * nb_ins], inputs[i * nb_ins + 1], network[found_o] -> val);
+			/*printf("%f xor %f = %f\n", inputs[i * nb_ins], inputs[i * nb_ins + 1], network[found_o] -> val); */
 			//network[nb_tot - 1] -> val);
 			r_results[i] = network[found_o] -> val;//network[nb_tot - 1] -> val;
 			
@@ -131,16 +131,16 @@ void save()
 	FILE* fichier = NULL;
 
 	fichier = fopen("saved_RDN_LBIW.txt", "w+");
-	fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
+	//fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
 	for (size_t i = nb_ins ; i < nb_tot ; i++)
 	{
 		fprintf(fichier, "%zu,%lf,%zu", 
 			network[i] -> len, 
 			network[i] -> bias, 
 			network[i] -> inputs);
-		for (size_t j = 0 ; j < (network[i] -> len) ; j++)
+		/*for (size_t j = 0 ; j < (network[i] -> len) ; j++)
 			fprintf(fichier, ",%lf", (network[i] -> weights)[j]);
-		fprintf(fichier, "\n");
+		fprintf(fichier, "\n");*/
 	}
 	fclose(fichier);
 }
@@ -175,8 +175,8 @@ arg 4 : nb outputs
 */
 int main(int argc, char *argv[])
 {
-	for (int i = 0 ; i < argc ; i++)
-		printf("Argument %d : %s \n", i+1, argv[i]);
+	//for (int i = 0 ; i < argc ; i++)
+	//	printf("Argument %d : %s \n", i+1, argv[i]);
 
 	if (argc != 3){
 		nb_col = 1;
