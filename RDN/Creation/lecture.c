@@ -54,8 +54,8 @@ size_t find()
 	size_t retour = nb_ins + nb_col * nb_hne;
 	double max    = network[nb_ins + nb_col * nb_hne] -> val;
 	for (size_t i = nb_ins + nb_col * nb_hne + 1; i < nb_tot; i++) {
-		if ((network[i] -> val) > max) {
-			max = network[i] -> val;
+		if ((network[i]->val) > max) {
+			max = network[i]->val;
 			retour = i;
 		}
 	}
@@ -74,7 +74,6 @@ void read(size_t mode)
 	char charac;
 	double inputs[nb_ins];
 	assert(fscanf(fichier_I, "%zu", &nb_scan));
-	//printf("nb_scan : %zu\n", nb_scan);
 	for (size_t i = 0 ; i < nb_scan ; i++)
 	{
 		for (size_t j = 0 ; j < nb_ins ; j++)
@@ -82,10 +81,8 @@ void read(size_t mode)
 			fseek(fichier_I, +1, SEEK_CUR);
 			assert(fscanf(fichier_I, "%lf", &inputs[j]));
 		}
-		//printf("inputs : %lf, %lf\n", inputs[0], inputs[1]);
 		eval(inputs);
 		size_t found = find();
-		printf("%zu\n", found);
 		charac = trans(found, mode);
 		fputc(charac, fichier_O);
 	}

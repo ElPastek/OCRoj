@@ -11,20 +11,10 @@ double *inputs; //simul 2 dimentions
 double *results;
 NEURON **network;
 
-void train()//char *argv[])
+void train()
 {
-	/*
-	double inputs[4][2] = {
-		{0,1},
-		{0,0},
-		{1,0},
-		{1,1}
-	}; 
-	results[4] = {1,0,1,0}; //2 3 4 ...
-	*/
 	
 	double r_results[nb_elem];
-	//size_t r_results[4];
 
 	int epoch = 0;
 
@@ -68,17 +58,6 @@ void train()//char *argv[])
 				network[j] -> error = sum * derivative(network[j] -> val);
 				network[j] -> bias += network[j] -> error;
 			}
-			/*
-			for (; j > (nb_ins - 1) ; j--) //other hidden layers
-			{
-				double sum = 0;
-				size_t b = ((j - nb_ins) / nb_hne + 1 ) * nb_hne + nb_ins;
-				size_t e = b + nb_hne	;
-				for (; b < e ; b++)
-						sum += (network[b] -> error) * ((network[b] -> weights)[(j - nb_ins) % nb_hne]);
-				network[j] -> error = sum * derivative(network[j] -> val);
-				network[j] -> bias += network[j] -> error;
-			} */
 			//update of weight
 			for (j = nb_ins ; j < nb_tot ; j++)
 			{
@@ -93,7 +72,7 @@ void train()//char *argv[])
 		}
 
 		epoch++;
-		printf("epoch : %d\n", epoch);
+		//printf("epoch : %d\n", epoch);
 
 	} while (!verif(r_results, nb_elem) && epoch < 100000);
 		//(epoch < 1));
@@ -131,16 +110,16 @@ void save()
 	FILE* fichier = NULL;
 
 	fichier = fopen("saved_RDN_LBIW.txt", "w+");
-	//fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
+	fprintf(fichier, "%zu,%zu,%zu,%zu\n", nb_ins, nb_col, nb_hne, nb_out);
 	for (size_t i = nb_ins ; i < nb_tot ; i++)
 	{
 		fprintf(fichier, "%zu,%lf,%zu", 
 			network[i] -> len, 
 			network[i] -> bias, 
 			network[i] -> inputs);
-		/*for (size_t j = 0 ; j < (network[i] -> len) ; j++)
+		for (size_t j = 0 ; j < (network[i] -> len) ; j++)
 			fprintf(fichier, ",%lf", (network[i] -> weights)[j]);
-		fprintf(fichier, "\n");*/
+		fprintf(fichier, "\n");
 	}
 	fclose(fichier);
 }
