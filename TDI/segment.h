@@ -76,25 +76,22 @@ void MakingBlocks(SDL_Surface* img)
 			Cut(img, 1, x, 0, y);
 		++x;
 	}
-	for(int i=0 ; i<3 ; ++i){	
-		x = 0, y = 0;
-		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
+	y = 0;
+	while(y < img->h){
+		x = 0;
 		while(x < img->w){
-			y = 0;
-			while(y < img->h){
-				SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-				y = r == g ? CutPrecise(img, x, y, 1) : y + 1;
+			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
+			x = r == g ? CutPrecise(img, x, y, 0) : x + 1;
 			}
-			++x;
-		}  
+		++y;
+	}
+	x = 0;
+	while(x < img->w){
 		y = 0;
 		while(y < img->h){
-			x = 0;
-			while(x < img->w){
-				SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-				x = r == g ? CutPrecise(img, x, y, 0) : x + 1;
-				}
-			++y;
+			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
+			y = r == g ? CutPrecise(img, x, y, 1) : y + 1;
 		}
+		++x; 
 	}
 }  
