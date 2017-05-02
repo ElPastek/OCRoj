@@ -55,11 +55,7 @@ int main()
 	Display(image);
 	To_Black_And_White(image);
 	Display(image);
-	struct block* blox= malloc(sizeof(struct block));
-	int l = MakingBlocks(image, blox);
+	MakingBlocks(image, blox);
 	Display(image);
-	for(int i = 0; i < l; ++l)
-		printf("Bloc #%i : begin (%i, %i) ; end (%i, %i)", i+1, (blox + i)->x_zero, (blox + i)->y_zero, (blox + i)->x_end, (blox + i)->y_end);
-	
 	return 0;
 }

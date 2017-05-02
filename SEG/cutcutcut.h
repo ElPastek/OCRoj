@@ -8,4 +8,4 @@ struct block {
 };
 
 void MakingChars(SDL_Surface* line);
-int MakingBlocks(SDL_Surface* img, struct block* blox);
+void MakingBlocks(SDL_Surface* img, struct block* blox);
