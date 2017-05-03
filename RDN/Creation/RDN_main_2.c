@@ -1,4 +1,4 @@
-# include "neuron_2.h"
+# include "network.h"
 # include "RDN_main_2.h"
 
 size_t nb_ins;
