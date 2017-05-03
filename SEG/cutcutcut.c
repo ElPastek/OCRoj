@@ -29,7 +29,7 @@ int CutPrecise(SDL_Surface* img, int x, int y, int xory)
 	Uint8 r=255, g=255, b=255;
 	if(xory){
 		int y_ = y, blackpxlfound = 0;
-		while(y_ < img->h){
+		while(y_ < img->h && r == g){
 			blackpxlfound = blackpxlfound || (r == 0 && g == 0);
 			++y_;
 			SDL_GetRGB(getpixel(img, x, y_), img->format, &r, &g, &b);
@@ -51,7 +51,8 @@ int CutPrecise(SDL_Surface* img, int x, int y, int xory)
 	}
 }
 
-void MakingBlocks(SDL_Surface* img)
+
+void MakingBlocks(SDL_Surface* img, struct block* blox) //returns lenght of the block array
 {
 	int x, y = 0;
 	Uint8 r, g, b;
@@ -88,7 +89,7 @@ void MakingBlocks(SDL_Surface* img)
 	while(x < img->w){
 		while(y < img->h){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-			y = g==255 ? CutPrecise(img, x, y, 1) : y + 1;
+			y = g == r ? CutPrecise(img, x, y, 1) : y + 1;
 		}
 		++x;
 	}  
@@ -96,9 +97,52 @@ void MakingBlocks(SDL_Surface* img)
 	while(y < img->h){
 		while(x < img->w){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-			x = g==255 ? CutPrecise(img, x, y, 0) : x + 1;
-			}
-		++y;
+			x = g == r ? CutPrecise(img, x, y, 0) : x + 1;
 		}
+		++y;
+	}
+	
+	/*
+	//Saving blocks
+	int block_flag=0, xtmp, ytmp;
+	y=0;
+	while(y < img->h){
+		x=0;
+		while(x < img->w){
+			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
+			if(block_flag && r != g){
+					struct block b;
+					b.x_zero = xtmp;
+					b.x_end = x;
+					b.y_zero = ytmp;
+					b.y_end = y;
+					*blox = b;
+					++blox;
+					++b_len;
+					block_flag = 0;
+			}
+			if(!block_flag && r == g){
+				SDL_GetRGB(getpixel(img, x, y - 1), img->format, &r, &g, &b); //Do we know that block already?
+				if(r == g){
+					while(x < img->w && r == g){ //yes, so we go directly to the end of this block
+						SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b); 
+						++x;
+					}
+					--x;
+				}
+				else{ //no, so we start saving its x's and y's
+					xtmp = x, ytmp = y;
+					block_flag = 1;
+				}
+			}
+			++x;
+		}
+		++y;
+	}
+	*/
 }  
 
+/*void CuttingChars(SDL_Surface* img)
+{	
+	
+}*/

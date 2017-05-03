@@ -5,6 +5,9 @@
 #include "pixel_operations.h"
 #include "cutcutcut.h"
 #include "intomatrices.h"
+#include "../TDI/black_and_white.h"
+
+
 void wait_for_keypressed(void) {
   SDL_Event event;
   for (;;) {
@@ -50,9 +53,9 @@ int main()
 	
 	SDL_Surface* image = OnLoad("ex.jpg");
 	Display(image);
-	MakingBlocks(image);
+	To_Black_And_White(image);
 	Display(image);
-	
-	
+	MakingBlocks(image, blox);
+	Display(image);
 	return 0;
 }
