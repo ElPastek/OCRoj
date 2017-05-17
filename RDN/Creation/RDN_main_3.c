@@ -1,32 +1,29 @@
 # include "network.h"
-# include "RDN_main_2.h"
+# include "RDN_main_3.h"
 
 size_t nb_ins;
 size_t nb_col;
 size_t nb_hne;
 size_t nb_out;
 size_t nb_tot;
-size_t nb_elem; 
-double *inputs;
+size_t nb_alpha;
 double *results;
 NEURON **network;
 
-void train()
+void train(double *inputs, size_t result)
 {
-	
-	double r_results[nb_elem];
+	//double r_results[nb_out];
+	double r_results;
 
 	int epoch = 0;
 
-	do
-	{
-		for (size_t i = 0 ; i < nb_elem ; i++)
-		{	
+	do {
+		//for (size_t i = 0 ; i < nb_ins ; i++) {	
 
-			size_t j = 0;
+		size_t j = 0;
 			//propagation of values
-			for (; j < nb_ins ; j++)
-				network[j] -> val = inputs[i * nb_ins + j];
+		for (; j < nb_ins ; j++)
+				network[j] -> val = inputs[j]; //inputs[i * nb_ins + j];
 			
 			for (; j < nb_tot ; j++)
 				network[j] -> val = n_output(network[j], network);
@@ -34,15 +31,16 @@ void train()
 			//verification
 			size_t found = find();
 			size_t found_o = found + nb_ins + nb_hne * nb_col;
-			/*printf("%f xor %f = %f\n", inputs[i * nb_ins], inputs[i * nb_ins + 1], network[found_o] -> val); */
+			printf("%f xor %f = %zu\n", inputs[0], inputs[1], found);//network[found_o] -> val);
 			//network[nb_tot - 1] -> val);
-			r_results[i] = network[found_o] -> val;//network[nb_tot - 1] -> val;
+			r_results = network[found_o] -> val;//network[nb_tot - 1] -> val;
 			
 			//propagation of errors
 			for (--j; j > nb_tot - nb_out - 1; j--) //outputs
 			{
 				//network[j] -> error = results[i] - (network[j] -> val);
-				int is_stimul = (j + nb_out - nb_tot) == results[i];
+				double is_stimul = (j + nb_out - nb_tot) != result;
+				printf("is_stimul : %lf\n", is_stimul);
 				network[j] -> error = derivative(network[j] -> val) * //(results[i] - (network[j] -> val));
 				(is_stimul - (network[j] -> val));
 				network[j] -> bias += network[j] -> error;
@@ -64,22 +62,22 @@ void train()
 				size_t l = network[j] -> len;
 				for (size_t k = 0 ; k < l ; k++)
 				{
-					((network[j] -> weights)[k]) += 0.2 *
+					((network[j] -> weights)[k]) += 0.4 *
 					(network[j] -> error) *
 					(network[(network[j] -> inputs) + k] -> val);
 				}
 			}
-		}
+		//}
 
-		epoch++;
-		//printf("epoch : %d\n", epoch);
+			epoch++;
+			printf("epoch : %d\n", epoch);
 
-	} while (!verif(r_results, nb_elem) && epoch < 100000);
+		} while (r_results < 0.9 && epoch < 100000);
 		//(epoch < 1));
-	if (epoch == 100000)
-	{
+		if (epoch == 100000)
+		{
 		network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
-		train();
+		train(inputs, result);
 	}
 }
 
@@ -87,7 +85,7 @@ int verif(double tab[], size_t len)
 {
 	int check = 1;
 	for (size_t i = 0 ; i < len && check; i++)
-		check = tab[i] > 0.9;
+		check = tab[i] > 0.6;
 	return check;
 	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
 }
@@ -127,22 +125,23 @@ void save()
 void open_training()
 {
 	FILE* fichier = NULL;
-	fichier = fopen("training.txt", "r");
-	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_elem));
-	results = malloc(nb_elem * sizeof(double));
-	inputs  = malloc(nb_elem * nb_ins * sizeof(double));
-	for (size_t i = 0 ; i < nb_elem ; i++)
-	{
-		fseek(fichier, +1, SEEK_CUR);
-		assert(fscanf(fichier, "%lf", &results[i]));
-	}
-	for (size_t i = 0 ; i < nb_elem ; i++)
+	fichier = fopen("training_2.txt", "r");
+	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_alpha));
+	double *inputs  = malloc(nb_ins  * sizeof(double));
+
+	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
+	srand(time(NULL));
+	network = init__network(nb_ins, nb_col, nb_hne, nb_out);
+
+	for (size_t i = 0 ; i < (nb_alpha * nb_out) ; i++)
 	{
 		for (size_t j = 0 ; j < nb_ins ; j++)
 		{
 			fseek(fichier, +1, SEEK_CUR);
-			assert(fscanf(fichier, "%lf", &inputs[i * nb_ins + j]));
+			assert(fscanf(fichier, "%lf", &inputs[j]));
 		}
+		printf("taille taille : %zu\n",i%nb_out );
+		train(inputs, i%nb_out);
 	}
 	fclose(fichier);
 }
@@ -167,12 +166,6 @@ int main(int argc, char *argv[])
 	}
 	open_training();
 
-	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
-
-	srand(time(NULL));
-	
-	network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
-	train();
 	save();
 	return 0;
 }

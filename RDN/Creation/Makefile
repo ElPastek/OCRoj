@@ -3,7 +3,7 @@
 # Compilers vars
 CC=gcc
 CPPFLAGS= -MMD 
-CFLAGS= -Wall -Wextra -std=c99 -O2
+CFLAGS= -Wall -Wextra -pedantic -std=c99 -O2
 LDFLAGS=
 LDLIBS= -lm
 
