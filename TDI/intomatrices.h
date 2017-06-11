@@ -1,8 +1,3 @@
-/*char* resize(struct mat* car){
-	int* ratio = malloc(2*sizeof(int));
-	*ratio = ntm
-}*/
-
 struct mat{
 	int c, l;
 	char* data;
@@ -19,6 +14,20 @@ void mark(SDL_Surface* img, int x, int _y){
 	}
 }
 
+void resize(struct mat* mat, FILE* ft){
+	int dif[2];
+	dif[0] = mat->c - 10, dif[1] = mat->l - 10;
+	//resizing horizontaly
+	if(dif[0] > 0);
+	if(dif[0] < 0);
+	//resizing verticaly
+	if(dif[1] > 0);
+	if(dif[1] < 0);
+	mat->data[mat->c * mat->l + 1] = '0';
+	fputs(mat->data, ft);
+	fputs('\n', ft);
+}
+
 int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
 	int _x = x, x_max = x, y_max = y, i = 0;
 	Uint8 r, g, b;
@@ -32,10 +41,6 @@ int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
 		SDL_GetRGB(getpixel(img, x, y_max), img->format, &r, &g, &b);
 		y_max++;
 	}
-	/*struct mat* mat = malloc(sizeof(struct mat));
-	mat->c = x_max - x, mat->l = y_max - y;
-	mat->data = malloc((mat->c) * (mat->l) * sizeof(char));*/
-	printf("   cols = %i, y = %i, ymax = %i\n\n", x_max - x, y, y_max);
 	while(y < y_max){
 		x = _x;
 		while(x < x_max){
@@ -49,19 +54,15 @@ int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
 		++y;
 	}
 	fputc('\n', f);
-	//mat->data[i] = '\n', mat->data[i+1] = '\0';
 	return x_max;
 }
 
-void dispCurr(SDL_Surface* img, int x, int y){
-	putpixel(img, x, y, SDL_MapRGB(img->format, 0, 255, 255));
-}
 
 void intoMatrices(SDL_Surface* img)
 {
-	int x, y = 0;
+	int x, y = 0, char_found=0;
 	Uint8 r, g, b;
-	FILE* f = fopen("training.txt", "w+");
+	FILE* f = fopen("tmp", "w+");
 	while(y < img->h)
   {
 		x = 0;
@@ -77,24 +78,35 @@ void intoMatrices(SDL_Surface* img)
 				}
 				else{
 					printf("Char found at %i\n", x);
+					char_found++;
 					int _x = __intoMat(img, f, x, y);
-
-					//char* char = resize(mat);
-					
-					//fputs(mat->data, f);
 					mark(img, x, y);
-					//x += mat->c;
 					x = _x;
 				}
 			}
 
 			else{
-				putpixel(img, x, y, SDL_MapRGB(img->format, 0, 255, 255));
 				++x;
 			}
 		}
-		display_image(img);
 		++y;
 	}
 	fclose(f);
+	f = fopen("tmp", "r");
+	FILE* ft = fopen("training","w+");
+	fprintf(ft, "i,o,%i\n", char_count);
+	struct mat* mat = malloc(sizeof(struct mat));
+	mat->l = 0;
+	char* buf[255];
+	fgets(buf, 255, f);
+	while(buf[0] != EOF){
+		mat->c = (int)buf[0] - 48;
+		if(buf[1] != '\n')
+			mat->c = mat->c * 10 + (int)buf[1] - 48;
+		fgets(buf, 255, f);
+		for(;buf[mat->c * mat->l + 1] != '0'; ++mat->l);
+		mat->data = (char*)buf;
+		resize(mat, ft); //print resized 10(?)*10matrix into training.
+		fgets(buf, 255, f);
+	}
 }
