@@ -1,4 +1,3 @@
-# include "network.h"
 # include "RDN_main_3.h"
 
 size_t nb_ins;
@@ -16,66 +15,66 @@ void train(double *inputs, size_t result)
 	double r_results;
 
 	int epoch = 0;
-
+	size_t found;
 	do {
 		//for (size_t i = 0 ; i < nb_ins ; i++) {	
 
 		size_t j = 0;
-			//propagation of values
+		//propagation of values
 		for (; j < nb_ins ; j++)
-				network[j] -> val = inputs[j]; //inputs[i * nb_ins + j];
+			network[j] -> val = inputs[j]; //inputs[i * nb_ins + j];
 			
-			for (; j < nb_tot ; j++)
-				network[j] -> val = n_output(network[j], network);
+		for (; j < nb_tot ; j++)
+			network[j] -> val = n_output(network[j], network);
 
-			//verification
-			size_t found = find();
-			size_t found_o = found + nb_ins + nb_hne * nb_col;
-			printf("%f xor %f = %zu\n", inputs[0], inputs[1], found);//network[found_o] -> val);
-			//network[nb_tot - 1] -> val);
-			r_results = network[found_o] -> val;//network[nb_tot - 1] -> val;
-			
-			//propagation of errors
-			for (--j; j > nb_tot - nb_out - 1; j--) //outputs
-			{
-				//network[j] -> error = results[i] - (network[j] -> val);
-				double is_stimul = (j + nb_out - nb_tot) != result;
-				printf("is_stimul : %lf\n", is_stimul);
-				network[j] -> error = derivative(network[j] -> val) * //(results[i] - (network[j] -> val));
-				(is_stimul - (network[j] -> val));
-				network[j] -> bias += network[j] -> error;
-			}
-			for (; j > (nb_ins - 1) ; j--)//j > nb_tot - nb_out - nb_hne - 1; j--) //last hidden layer
-			{
-				double sum = 0;
-				//size_t b = nb_tot - nb_out;
-				size_t b = ((j - nb_ins) / nb_hne + 1 ) * nb_hne + nb_ins;
-				size_t e = b + nb_hne	;
-				for (; b < nb_tot && b < e; b++)
-					sum += (network[b] -> error) * ((network[b] -> weights)[(j - nb_ins) % nb_hne]);
-				network[j] -> error = sum * derivative(network[j] -> val);
-				network[j] -> bias += network[j] -> error;
-			}
-			//update of weight
-			for (j = nb_ins ; j < nb_tot ; j++)
-			{
-				size_t l = network[j] -> len;
-				for (size_t k = 0 ; k < l ; k++)
-				{
-					((network[j] -> weights)[k]) += 0.4 *
-					(network[j] -> error) *
-					(network[(network[j] -> inputs) + k] -> val);
-				}
-			}
-		//}
-
-			epoch++;
-			printf("epoch : %d\n", epoch);
-
-		} while (r_results < 0.9 && epoch < 100000);
-		//(epoch < 1));
-		if (epoch == 100000)
+		//verification
+		found = find(); //0 ,1, 2...
+		//printf("found : %zu \n", found);
+		size_t found_o = found + nb_ins + nb_hne * nb_col;
+		printf("%f xor %f = %zu\n", inputs[0], inputs[1], found);//network[found_o] -> val);
+		//network[nb_tot - 1] -> val);
+		r_results = network[found_o] -> val;//network[nb_tot - 1] -> val;
+		
+		//propagation of errors
+		for (--j; j > nb_tot - nb_out - 1; j--) //outputs
 		{
+			double is_stimul = (j + nb_out - nb_tot) == result;
+			printf("is_stimul %zu : %lf\n", j, is_stimul);
+			network[j] -> error = //derivative(network[j] -> val) * //(results[i] - (network[j] -> val));
+			(is_stimul - (network[j] -> val));
+			network[j] -> bias += network[j] -> error;
+		}
+		for (; j > (nb_ins - 1) ; j--) //hidden layers
+		{
+			double sum = 0;
+			//size_t b = nb_tot - nb_out;
+			size_t b = ((j - nb_ins) / nb_hne + 1 ) * nb_hne + nb_ins;
+			size_t e = b + nb_hne	;
+			for (; b < nb_tot && b < e; b++)
+				sum += (network[b] -> error) * ((network[b] -> weights)[(j - nb_ins) % nb_hne]);
+			network[j] -> error = sum * derivative(network[j] -> val);
+			network[j] -> bias += network[j] -> error;
+		}
+		//update of weight
+		for (j = nb_ins ; j < nb_tot ; j++)
+		{
+			size_t l = network[j] -> len;
+			for (size_t k = 0 ; k < l ; k++)
+			{
+				((network[j] -> weights)[k]) += 0.2 *
+				(network[j] -> error) *
+				(network[(network[j] -> inputs) + k] -> val);
+			}
+		}
+		
+		epoch++;
+		printf("epoch : %d , prec : %f \n", epoch, r_results);
+
+	} while (!(found == result && r_results > 0.9) && epoch < 100000);
+	//(epoch < 1));
+	if (epoch == 100000)
+	{
+		printf("ERROR \n \n \n \n \n \n");
 		network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
 		train(inputs, result);
 	}
@@ -84,7 +83,7 @@ void train(double *inputs, size_t result)
 int verif(double tab[], size_t len)
 {
 	int check = 1;
-	for (size_t i = 0 ; i < len && check; i++)
+	for (size_t i = 0 ; (i < len) && check; i++)
 		check = tab[i] > 0.6;
 	return check;
 	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
@@ -93,8 +92,8 @@ int verif(double tab[], size_t len)
 size_t find()
 {
 	size_t retour = nb_ins + nb_col * nb_hne;
-	double max    = network[nb_ins + nb_col * nb_hne] -> val;
-	for (size_t i = nb_ins + nb_col * nb_hne + 1; i < nb_tot; i++) {
+	double max    = network[retour] -> val;
+	for (size_t i = retour + 1 ; i < nb_tot ; i++) {
 		if ((network[i] -> val) > max) {
 			max = network[i] -> val;
 			retour = i;
@@ -125,24 +124,28 @@ void save()
 void open_training()
 {
 	FILE* fichier = NULL;
-	fichier = fopen("training_2.txt", "r");
+	fichier = fopen("training.txt", "r");
 	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_alpha));
 	double *inputs  = malloc(nb_ins  * sizeof(double));
 
 	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
 	srand(time(NULL));
 	network = init__network(nb_ins, nb_col, nb_hne, nb_out);
+	printf("nb_ins : %zu ", nb_ins);
+	printf("nb_out : %zu ", nb_out);
+	printf("nb_alpha : %zu \n", nb_alpha);
 
-	for (size_t i = 0 ; i < (nb_alpha * nb_out) ; i++)
+	for (size_t i = 0 ; i < (nb_alpha /* *nb_out */) ; i++)
 	{
 		for (size_t j = 0 ; j < nb_ins ; j++)
 		{
 			fseek(fichier, +1, SEEK_CUR);
 			assert(fscanf(fichier, "%lf", &inputs[j]));
 		}
-		printf("taille taille : %zu\n",i%nb_out );
-		train(inputs, i%nb_out);
+		//printf("search : %zu\n", i % nb_out );
+		train(inputs, i % nb_out);
 	}
+	free(inputs);
 	fclose(fichier);
 }
 

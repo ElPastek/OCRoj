@@ -7,7 +7,7 @@ CFLAGS= -Wall -Wextra -pedantic -std=c99 -O2
 LDFLAGS=
 LDLIBS= -lm
 
-SRC= RDN_main_2.c lecture.c
+SRC= RDN_main_2.c RDN_main_3.c lecture.c
 DEP= ${SRC:.c=.d}
 PRG= ${SRC:.c=}
  

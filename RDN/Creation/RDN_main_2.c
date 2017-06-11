@@ -1,3 +1,4 @@
+
 # include "network.h"
 # include "RDN_main_2.h"
 
@@ -47,7 +48,7 @@ void train()
 				(is_stimul - (network[j] -> val));
 				network[j] -> bias += network[j] -> error;
 			}
-			for (; j > (nb_ins - 1) ; j--)//j > nb_tot - nb_out - nb_hne - 1; j--) //last hidden layer
+			for (; j > (nb_ins - 1) ; j--) // hidden layers
 			{
 				double sum = 0;
 				//size_t b = nb_tot - nb_out;
@@ -86,7 +87,7 @@ void train()
 int verif(double tab[], size_t len)
 {
 	int check = 1;
-	for (size_t i = 0 ; i < len && check; i++)
+	for (size_t i = 0 ; (i < len) && check; i++)
 		check = tab[i] > 0.9;
 	return check;
 	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
@@ -131,11 +132,16 @@ void open_training()
 	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_elem));
 	results = malloc(nb_elem * sizeof(double));
 	inputs  = malloc(nb_elem * nb_ins * sizeof(double));
+	/*
 	for (size_t i = 0 ; i < nb_elem ; i++)
 	{
 		fseek(fichier, +1, SEEK_CUR);
 		assert(fscanf(fichier, "%lf", &results[i]));
 	}
+	*/
+	for (size_t i = 0 ; i < nb_elem ; i++)
+		results[i] = i % nb_ins;
+
 	for (size_t i = 0 ; i < nb_elem ; i++)
 	{
 		for (size_t j = 0 ; j < nb_ins ; j++)
