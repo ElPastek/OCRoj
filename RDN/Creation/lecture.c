@@ -1,6 +1,5 @@
-#include "lecture.h"
-#include "neuron_2.h"
-#define TAILLE_MAX 1000
+# include "lecture.h"
+# define TAILLE_MAX 1000
 
 size_t nb_ins;
 size_t nb_col;

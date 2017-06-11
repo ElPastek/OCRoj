@@ -8,6 +8,7 @@
 # include "black_on_white.h"
 # include "black_and_white.h"
 # include "open_image.h"
+# include "intomatrices.h"
 
 /* Main */
 int main(int argc, char* argv[])
@@ -23,6 +24,8 @@ int main(int argc, char* argv[])
   //To_Black_On_White(image);
   display_image(image);
   MakingBlocks(image);
+  display_image(image);
+	intoMatrices(image);
   display_image(image);
   SDL_FreeSurface(image);
   return 0;

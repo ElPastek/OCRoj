@@ -1,6 +1,6 @@
 # include <stdio.h>
 # include <stdlib.h>
-# include "neuron_2.h"
+# include "neuron.h"
 
 struct s_network{
 	size_t nb_ins;
