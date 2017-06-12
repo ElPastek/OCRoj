@@ -15,17 +15,18 @@ void mark(SDL_Surface* img, int x, int _y){
 }
 
 void resize(struct mat* mat, FILE* ft){
-	int dif[2];
-	dif[0] = mat->c - 10, dif[1] = mat->l - 10;
-	//resizing horizontaly
-	if(dif[0] > 0);
-	if(dif[0] < 0);
-	//resizing verticaly
-	if(dif[1] > 0);
-	if(dif[1] < 0);
-	mat->data[mat->c * mat->l + 1] = '0';
+	int x = 0, y = 0;
+	char* resized = malloc(101*sizeof(char));
+	for(; x < mat->c ; ++x){
+		for(; y < mat->l ; ++y){
+			resized[(x*10/mat->c) + (y*10/mat->l) * mat->c] = mat->data[x + y *mat->c];
+		}
+	}
+	mat->data = resized;
+	mat->c = 10, mat->l = 10;
+	mat->data[100] = '\0';
 	fputs(mat->data, ft);
-	fputs('\n', ft);
+	fputc('\n', ft);
 }
 
 int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
@@ -41,16 +42,15 @@ int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
 		SDL_GetRGB(getpixel(img, x, y_max), img->format, &r, &g, &b);
 		y_max++;
 	}
+	fprintf(f, "%i\n", x_max - x);
 	while(y < y_max){
 		x = _x;
 		while(x < x_max){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 			char curr = r == 0 ? '1' : '0';
 			fputc(curr, f);
-			printf("%i ", x);
 			++x, ++i;
 		}
-		printf("\n");
 		++y;
 	}
 	fputc('\n', f);
@@ -94,19 +94,20 @@ void intoMatrices(SDL_Surface* img)
 	fclose(f);
 	f = fopen("tmp", "r");
 	FILE* ft = fopen("training","w+");
-	fprintf(ft, "i,o,%i\n", char_count);
+	fprintf(ft, "i,o,%i\n", char_found);
 	struct mat* mat = malloc(sizeof(struct mat));
 	mat->l = 0;
-	char* buf[255];
-	fgets(buf, 255, f);
-	while(buf[0] != EOF){
+	char* buf = calloc(1023, sizeof(char));
+	fgets(buf, 1023, f);
+	while((int)buf[0] != EOF){
 		mat->c = (int)buf[0] - 48;
-		if(buf[1] != '\n')
+		if((int)buf[1] != '\n')
 			mat->c = mat->c * 10 + (int)buf[1] - 48;
-		fgets(buf, 255, f);
-		for(;buf[mat->c * mat->l + 1] != '0'; ++mat->l);
-		mat->data = (char*)buf;
+		fgets(buf, 1023, f);
+		printf("%s\n, %i", buf, mat->c);
+		for(; buf[mat->c * mat->l + 1] != '\n' ; ++mat->l);
+		mat->data = buf;
 		resize(mat, ft); //print resized 10(?)*10matrix into training.
-		fgets(buf, 255, f);
+		fgets(buf, 1023, f);
 	}
 }
