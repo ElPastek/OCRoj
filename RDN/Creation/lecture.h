@@ -1,7 +1,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-#include "neuron.h"
+
+# include "network.h"
 
 /*
 NEURON *init_neuron(size_t len, size_t inputs, double *weights )
