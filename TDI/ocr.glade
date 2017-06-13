@@ -75,15 +75,15 @@
             <property name="can_focus">False</property>
             <property name="margin_top">5</property>
             <child>
-              <object class="GtkButton" id="RDN">
-                <property name="label" translatable="yes">RDN</property>
+              <object class="GtkButton" id="Ouvrir">
+                <property name="label" translatable="yes">Ouvrir</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="margin_left">25</property>
+                <property name="margin_left">15</property>
                 <property name="margin_top">100</property>
                 <property name="margin_bottom">100</property>
-                <signal name="clicked" handler="on_RDN_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_Ouvrir_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -116,6 +116,17 @@
           </packing>
         </child>
         <child>
+          <object class="GtkImage" id="chosen_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox" id="box1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -125,10 +136,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="margin_left">25</property>
+                <property name="margin_left">15</property>
                 <property name="margin_top">25</property>
                 <property name="margin_bottom">25</property>
-                <property name="xalign">0.43999999761581421</property>
                 <signal name="clicked" handler="on_Commencer_clicked" swapped="no"/>
               </object>
               <packing>
@@ -146,6 +156,7 @@
                 <property name="margin_right">25</property>
                 <property name="margin_top">25</property>
                 <property name="margin_bottom">25</property>
+                <signal name="clicked" handler="on_Recup_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
