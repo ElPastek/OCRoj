@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
   //To_Black_On_White(image);
   //display_image(image);
   MakingBlocks(image);
-  //display_image(image);
+  display_image(image);
   intoMatrices(image);
   //display_image(image);
   SDL_FreeSurface(image);
