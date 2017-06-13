@@ -40,24 +40,6 @@ char* file_chooser_create()
 
 void on_Commencer_clicked()
 {
-<<<<<<< HEAD
-	if(argc < 2)
-		errx(1, "Please enter an image path.");
-  init_sdl();
-  SDL_Surface *image = load_image(argv[1]);
-  //display_image(image);
-  To_GreyLevel(image);
-  //display_image(image);
-  To_Black_And_White(image);
-  //To_Black_On_White(image);
-  //display_image(image);
-  MakingBlocks(image);
-  //display_image(image);
-	intoMatrices(image);
-  //display_image(image);
-  SDL_FreeSurface(image);
-  return 0;
-=======
   char *file = (char*)file_chooser_create();
   SDL_Surface *image = load_image(file);
   To_GreyLevel(image);
@@ -107,5 +89,4 @@ int main(int argc, char *argv[])
 		gtk_main();
 
     return 0;
->>>>>>> 1a863c3cc9f221a1816b30444f70ae8382ac1a9d
 }

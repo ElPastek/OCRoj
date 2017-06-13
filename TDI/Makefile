@@ -1,11 +1,11 @@
 ## Simple SDL mini code
 
-CC=clang
+CC=gcc
 
-CPPFLAGS= `pkg-config --cflags sdl`
-CFLAGS= -Wall -Wextra -Werror -std=c99
-LDFLAGS=
-LDLIBS= `pkg-config --libs sdl` -lSDL_image
+CPPFLAGS= `pkg-config --cflags sdl` `pkg-config --cflags gtk+-3.0` 
+CFLAGS= -Wall -Wextra -std=c99 
+LDFLAGS= -rdynamic
+LDLIBS= `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0`
 
 SRC= main.c
 OBJ= ${SRC:.c=.o}
