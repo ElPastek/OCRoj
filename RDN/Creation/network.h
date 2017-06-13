@@ -1,5 +1,5 @@
-# include <stdio.h>
-# include <stdlib.h>
+/*# include <stdio.h>
+# include <stdlib.h>*/
 # include "neuron.h"
 
 struct s_network{

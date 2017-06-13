@@ -81,7 +81,7 @@ NEURON *init_neuron(size_t len, size_t inputs, double *weights, double bias)
  */
 char trans(size_t input, size_t mode)
 {
-	if (mode)            //from 0  to 94
+	if (!mode)            //from 0  to 94
 		return input + 32; //from 32 to 126
 	else
 		return input + 48; //0 or 1
