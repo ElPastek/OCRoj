@@ -4,7 +4,7 @@ CC=gcc
 
 CPPFLAGS= `pkg-config --cflags sdl` `pkg-config --cflags gtk+-3.0` 
 CFLAGS= -Wall -Wextra -std=c99 
-LDFLAGS= -rdynamic
+LDFLAGS= -pthread -lpthread -rdynamic
 LDLIBS= `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0`
 
 SRC= main.c
