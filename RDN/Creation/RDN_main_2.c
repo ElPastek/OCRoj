@@ -73,9 +73,9 @@ void train()
 		epoch++;
 		//printf("epoch : %d\n", epoch);
 
-	} while (!verif(r_results, nb_elem) && epoch < 100000);
+	} while (!verif(r_results, nb_elem) && epoch < 1000000);
 		//(epoch < 1));
-	if (epoch == 100000)
+	if (epoch == 1000000)
 	{
 		network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
 		train();
@@ -86,7 +86,7 @@ int verif(double tab[], size_t len)
 {
 	int check = 1;
 	for (size_t i = 0 ; (i < len) && check; i++)
-		check = tab[i] > 0.9;
+		check = tab[i] > 0.7;
 	return check;
 	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
 }
@@ -126,7 +126,7 @@ void save()
 void open_training()
 {
 	FILE* fichier = NULL;
-	fichier = fopen("training.txt", "r");
+	fichier = fopen("training", "r");
 	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_elem));
 	results = malloc(nb_elem * sizeof(double));
 	inputs  = malloc(nb_elem * nb_ins * sizeof(double));
@@ -142,10 +142,13 @@ void open_training()
 
 	for (size_t i = 0 ; i < nb_elem ; i++)
 	{
+		fseek(fichier, +1, SEEK_CUR);
 		for (size_t j = 0 ; j < nb_ins ; j++)
 		{
-			fseek(fichier, +1, SEEK_CUR);
-			assert(fscanf(fichier, "%lf", &inputs[i * nb_ins + j]));
+			//fseek(fichier, +1, SEEK_CUR);
+			//assert(fscanf(fichier, "%lf", &inputs[i * nb_ins + j]));
+			inputs[i * nb_ins +j] = fgetc(fichier) - 48;
+
 		}
 	}
 	fclose(fichier);
@@ -160,14 +163,16 @@ int main(int argc, char *argv[])
 {
 	//for (int i = 0 ; i < argc ; i++)
 	//	printf("Argument %d : %s \n", i+1, argv[i]);
-
+	(void)argv;
 	if (argc != 3){
 		nb_col = 1;
-		nb_hne = 3;
+		nb_hne = 8;
 	}
 	else{
-		nb_col = atoi(argv[1]);
-		nb_hne = atoi(argv[2]);
+		nb_col = 1;
+		nb_hne = 3;
+		//nb_col = atoi(argv[1]);
+		//nb_hne = atoi(argv[2]);
 	}
 	open_training();
 
