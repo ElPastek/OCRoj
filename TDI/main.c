@@ -4,15 +4,14 @@
 # include <assert.h>
 # include <unistd.h>
 # include <gtk/gtk.h>
-# include <SDL/SDL.h>
-# include <SDL/SDL_image.h>
 # include <err.h>
-# include "open_image.h"
+# include "mainSDL.h"
+/*# include "open_image.h"
 # include "pixel_operations.h"
 # include "grey_level.h"
 # include "black_and_white.h"
 # include "segment.h"
-//
+*/
 
 
 char* file_chooser_create()
@@ -40,7 +39,7 @@ char* file_chooser_create()
 
 void on_Commencer_clicked()
 {
-  char *file = (char*)file_chooser_create();
+  char *file = file_chooser_create();
   SDL_Surface *image = load_image(file);
   To_GreyLevel(image);
   To_Black_And_White(image);
@@ -51,8 +50,8 @@ void on_Commencer_clicked()
 void on_RDN_clicked()
 {
 	char* arg[] = {"1"};
-	assert(execv("/home/thomas/OCRoj/RDN/Creation/RDN_main_2", arg));
-	assert(execv("/home/thomas/OCRoj/RDN/Creation/lecture", arg));
+	assert(execv("../RDN/Creation/RDN_main_2", arg));
+	assert(execv("../home/thomas/OCRoj/RDN/Creation/lecture", arg));
 }
 
 /*void on_FileName_activate_current_link()
