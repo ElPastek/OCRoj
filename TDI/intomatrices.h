@@ -119,4 +119,16 @@ void intoMatrices(SDL_Surface* img)
 	for(; l->next ; l = l->next)
 		fwrite(l->next->m->data, sizeof(char), 101, f);
 	fclose(f);
+	f = fopen("training", "r");
+	char* buf = calloc(101, sizeof(char));
+	for(int i = 0; i < 95 ;++i){
+		fscanf(f, "%s", buf);
+		for(int x = 0; x < 10 ; ++x){
+			for(int y = 0; y < 10; ++y)
+				printf("%c", buf[x + y*10] == '0' ? '.' : '#');
+			printf("\n");
+		}
+		printf("\n");
+	}
+
 }
