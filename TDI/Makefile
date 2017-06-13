@@ -7,7 +7,7 @@ CFLAGS= -Wall -Wextra -std=c99
 LDFLAGS= -pthread -lpthread -rdynamic
 LDLIBS= `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0`
 
-SRC= main.c
+SRC= main.c mainSDL.c
 OBJ= ${SRC:.c=.o}
 
 all: CFLAGS += -O3
