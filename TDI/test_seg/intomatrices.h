@@ -11,14 +11,13 @@ struct list{
 };
 
 void ladd(struct list* l, struct mat* m){
-	while(l && l->next)
-		l = l->next;
+	struct list* curr = l;
+	assert(curr);
+	for( ; curr->next != NULL; curr = curr->next);
 	struct list* l_ = malloc(sizeof(struct list));
 	l_->m = m;
-	if(!l)
-		l = l_;
-	else
-		l->next = l_;
+	curr->next = l_;
+	l_->next = NULL;
 }
 
 void mark(SDL_Surface* img, int x, int _y){
@@ -116,7 +115,8 @@ void intoMatrices(SDL_Surface* img)
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
-	fprintf(f, "100,95,%i", char_found);
+	printf("%s\n", l->m->data);
+	fprintf(f, "100,95,%i\n", char_found);
 	for(; l->next ; l = l->next)
 		fwrite(l->m->data, sizeof(char), 101, f);
 	fclose(f);
