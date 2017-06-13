@@ -15,26 +15,26 @@ void mark(SDL_Surface* img, int x, int _y){
 		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 	}
 }
-
-void resize(struct mat* mat, FILE* ft, char* resized){
+char* resize(struct mat* mat){
 	int x, y = 0;
+	char* resized = calloc(101, sizeof(char));
+	if(mat->c < 10 || mat->l < 10)
+		for(int i = 0; i < 101; i++){ resized[i] = '0'; }
 	while(y < mat->l){
 		x = 0;
 		while(x < mat->c){
-			resized[(x*10/mat->c) + (y*10/mat->l) * mat->c] = mat->data[x + y *mat->c];
+			resized[(x*10/mat->c) + (y*10/mat->l) * 10] = mat->data[x + y *mat->c];
 			++x;
 		}
 		++y;
 	}
-	memcpy(mat->data, resized, 101);
 	mat->c = 10, mat->l = 10;
-	mat->data[100] = '\0';
-	printf("[%s]\n", mat->data);
-	fputs(mat->data, ft);
-	fputc('\n', ft);
+	resized[100] = '\n';
+	free(mat->data);
+	return resized;
 }
 
-int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
+int __intoMat(SDL_Surface* img, struct mat* mat, FILE *f, int x, int y){
 	int _x = x, x_max = x, y_max = y, i = 0;
 	Uint8 r, g, b;
 	SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
@@ -48,17 +48,27 @@ int __intoMat(SDL_Surface* img, FILE *f, int x, int y){
 		y_max++;
 	}
 	fprintf(f, "%i %i\n", x_max - x, y_max - y);
+	mat->c = x_max - x, mat->l = y_max - y;
+	mat->data = calloc(mat->c*mat->l, sizeof(char));
 	while(y < y_max){
 		x = _x;
 		while(x < x_max){
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
-			char curr = r == 0 ? '1' : '0';
-			fputc(curr, f);
+			mat->data[i] = r ? '0' : '1';
 			++x, ++i;
 		}
 		++y;
 	}
-	fputc('\n', f);
+/*
+	printf("%i %i\n", mat->c, mat->l); 
+	for(int k = 0; k <= mat->c * mat->l; ++k)
+		printf("%c", k%mat->c ? mat->data[k] : '\n');
+*/
+	mat->data = resize(mat);
+	/*for(int k = 0; k <= mat->c * mat->l; ++k)
+		printf("%c", k%mat->c ? mat->data[k] : '\n');
+ */
+	fwrite(mat->data, sizeof(char), 101, f);
 	return x_max;
 }
 
@@ -67,7 +77,8 @@ void intoMatrices(SDL_Surface* img)
 {
 	int x, y = 0, char_found=0;
 	Uint8 r, g, b;
-	FILE* f = fopen("tmp", "w+");
+	FILE* f = fopen("training", "w+");
+	struct mat* mat = malloc(sizeof(struct mat));
 	while(y < img->h)
   {
 		x = 0;
@@ -82,46 +93,20 @@ void intoMatrices(SDL_Surface* img)
 					}
 				}
 				else{
-					printf("Char found at %i\n", x);
+					//printf("Char found at %i\n", x);
 					char_found++;
-					int _x = __intoMat(img, f, x, y);
+					int _x = __intoMat(img, mat, f, x, y);
 					mark(img, x, y);
 					x = _x;
 				}
 			}
 
-			else{
+			else
 				++x;
-			}
 		}
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
 	fclose(f);
-	f = fopen("tmp", "r");
-	FILE* ft = fopen("training","w+");
-	fprintf(ft, "i,o,%i\n", char_found);
-	struct mat* mat = malloc(sizeof(struct mat));
-	mat->l = 0;
-	char* buf = calloc(2048, sizeof(char));
-	char* resized = calloc(101, sizeof(char));
-	fscanf(f, "%i", &mat->c);
-	fgets(buf, 5, f);
-	for(;char_found > 0; char_found--){
-		printf("Char remaining : %i.\n", 1 + char_found);
-		int k = (int)buf[1] == '\0' ? 1 : 2;
-		//int l = k + (int)buf[k + 2] == '\n' ? 2 : 3;
-		mat->l = strtoul(buf, (char**)(buf + k) , 10);
-		//mat->l = strtoul(buf + k + 1, (char**)(buf + l), 10); 
-		fgets(buf, 2048, f);
-		printf("%i %i \n", mat->c, mat->l);
-		//for(; buf[mat->c * mat->l + 1] != '\n' ; ++mat->l);
-		memcpy(mat->data, buf, mat->c * mat->l + 1);
-		resize(mat, ft, resized); //print resized 10(?)*10matrix into training.
-		fscanf(f, "%i", &mat->c);
-		fgets(buf, 5, f);
-	}
 	free(mat);
-	fclose(f);
-	fclose(ft);
 }
