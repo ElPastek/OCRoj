@@ -45,7 +45,6 @@ char* resize(struct mat* mat){
 	}
 	mat->c = 10, mat->l = 10;
 	resized[100] = '\n';
-	free(mat->data);
 	return resized;
 }
 
@@ -115,10 +114,8 @@ void intoMatrices(SDL_Surface* img)
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
-	printf("%s\n", l->m->data);
 	fprintf(f, "100,95,%i\n", char_found);
 	for(; l->next ; l = l->next)
-		fwrite(l->m->data, sizeof(char), 101, f);
+		fwrite(l->next->m->data, sizeof(char), 101, f);
 	fclose(f);
-	free(l);
 }
