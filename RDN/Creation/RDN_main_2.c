@@ -33,7 +33,7 @@ void train()
 			//verification
 			size_t found = find();
 			size_t found_o = found + nb_ins + nb_hne * nb_col;
-			/*printf("%f xor %f = %f\n", inputs[i * nb_ins], inputs[i * nb_ins + 1], network[found_o] -> val); */
+			printf("c : %c e : %d\n", (char)(network[found_o] -> val) + 32, epoch); 
 			//network[nb_tot - 1] -> val);
 			r_results[i] = network[found_o] -> val;//network[nb_tot - 1] -> val;
 			
@@ -63,7 +63,7 @@ void train()
 				size_t l = network[j] -> len;
 				for (size_t k = 0 ; k < l ; k++)
 				{
-					((network[j] -> weights)[k]) += 0.2 *
+					((network[j] -> weights)[k]) += 0.5 *
 					(network[j] -> error) *
 					(network[(network[j] -> inputs) + k] -> val);
 				}
@@ -77,6 +77,8 @@ void train()
 		//(epoch < 1));
 	if (epoch == 1000000)
 	{
+		for (size_t o = 0; o < 10 ; o++)
+		printf("ERRR \n \n \n \n \n \n \n \n");
 		network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
 		train();
 	}
@@ -166,7 +168,7 @@ int main(int argc, char *argv[])
 	(void)argv;
 	if (argc != 3){
 		nb_col = 1;
-		nb_hne = 8;
+		nb_hne = 80;
 	}
 	else{
 		nb_col = 1;
