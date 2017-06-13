@@ -100,6 +100,7 @@ void intoMatrices(SDL_Surface* img)
 					}
 				}
 				else{
+					
 					//printf("Char found at %i\n", x);
 					char_found++;
 					int _x = __intoMat(img, l, x, y);
