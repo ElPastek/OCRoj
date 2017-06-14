@@ -12,56 +12,13 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkMenuBar" id="menubar1">
+          <object class="GtkButton" id="quit">
+            <property name="label" translatable="yes">Quitter</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkMenuItem" id="menuitem1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Fichier</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="menu1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem" id="Fermer">
-                        <property name="label">gtk-quit</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="on_ocr_destroy" swapped="no"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="menuitem4">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Aid_e</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="menu3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem" id="help">
-                        <property name="label">gtk-about</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">start</property>
+            <signal name="clicked" handler="on_quit_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -73,24 +30,6 @@
           <object class="GtkBox" id="box2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">5</property>
-            <child>
-              <object class="GtkButton" id="Ouvrir">
-                <property name="label" translatable="yes">Ouvrir</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="margin_left">15</property>
-                <property name="margin_top">100</property>
-                <property name="margin_bottom">100</property>
-                <signal name="clicked" handler="on_Ouvrir_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkImage" id="logo">
                 <property name="name">Logo</property>
@@ -98,12 +37,12 @@
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin_left">170</property>
-                <property name="margin_right">225</property>
-                <property name="pixbuf">vrailogomdr.png</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <property name="pixbuf">logoyolo.png</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -116,9 +55,43 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="chosen_image">
+          <object class="GtkBox">
+            <property name="name">-5050</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <child>
+              <object class="GtkFileChooserButton" id="button_ouvrir">
+                <property name="name">button_ouvrir</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+                <property name="margin_left">25</property>
+                <property name="title" translatable="yes"/>
+                <signal name="selection-changed" handler="selection_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="chosen_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">25</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <property name="xpad">0</property>
+                <property name="ypad">0</property>
+                <property name="stock">gtk-missing-image</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -136,7 +109,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="margin_left">15</property>
+                <property name="margin_left">25</property>
                 <property name="margin_top">25</property>
                 <property name="margin_bottom">25</property>
                 <signal name="clicked" handler="on_Commencer_clicked" swapped="no"/>
@@ -148,7 +121,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="Récupérer le texte">
+              <object class="GtkButton" id="button_get_text">
                 <property name="label" translatable="yes">Récupérer le texte</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>

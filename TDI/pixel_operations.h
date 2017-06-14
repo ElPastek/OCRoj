@@ -1,6 +1,6 @@
 // pixel_operations.c
-# include <SDL/SDL.h>
-# include <SDL2/SDL_image.h>
+//# include <SDL/SDL.h>
+//# include <SDL2/SDL_image.h>
 // Simple get/put pixel for SDL
 // Inspired by code from SDL documentation
 // (http://www.libsdl.org/release/SDL-1.2.15/docs/html/guidevideo.html)
