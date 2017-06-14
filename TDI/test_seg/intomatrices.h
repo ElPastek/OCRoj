@@ -125,15 +125,18 @@ void intoMatrices(SDL_Surface* img)
 	fclose(f);
 
 	f = fopen("inputs_RDN.txt", "r");
-	char* buf = calloc(101, sizeof(char));
-	for(int i = 0; i < 10 ;++i){
+	char* buf = calloc(257, sizeof(char));
+	for(int i = 0; i < char_found ;++i){
 		fscanf(f, "%s", buf);
-		for(int x = 0; x < 16 ; ++x){
-			for(int y = 0; y < 16; ++y)
-				printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
+		if(i > 649 && i < 700){
+			for(int x = 0; x < 16 ; ++x){
+				for(int y = 0; y < 16; ++y)
+					printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
+				printf("\n");
+			}
+		
 			printf("\n");
 		}
-		printf("\n");
 	}
 
 }

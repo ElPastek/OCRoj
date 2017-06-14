@@ -6,7 +6,6 @@
 # include <err.h>
 # include "pixel_operations.h"
 # include "segment.h"
-# include "decoupage.h"
 # include "grey_level.h"
 # include "black_and_white.h"
 # include "open_image.h"
@@ -41,7 +40,7 @@ void on_Commencer_clicked()
     SDL_Surface *img = load_image(filepath);
     To_GreyLevel(img);
     To_Black_And_White(img);
-    decoupages(img);
+    MakingBlocks(img);
     gtk_image_set_from_file(image, "segmented_image");
   }
   else

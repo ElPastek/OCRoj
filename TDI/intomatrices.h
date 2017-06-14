@@ -30,6 +30,11 @@ void mark(SDL_Surface* img, int x, int _y){
 		SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 	}
 }
+
+void addspace(struct list* l){
+	struct mat* m = malloc(struct )
+}
+
 char* resize(struct mat* mat){
 	int x, y = 0;
 	char* resized = calloc(257, sizeof(char));
@@ -82,7 +87,7 @@ int __intoMat(SDL_Surface* img, struct list* l, int x, int y){
 void intoMatrices(SDL_Surface* img)
 {
 	int x, y = 0, char_found=0;
-	//double spacex = 0;
+	int spacex=0, lastcharx;
 	Uint8 r, g, b;
 	FILE* f = fopen("inputs_RDN.txt", "w+");
 	struct list* l = malloc(sizeof(struct list));
@@ -106,14 +111,18 @@ void intoMatrices(SDL_Surface* img)
 					char_found++;
 					int _x = __intoMat(img, l, x, y);
 					mark(img, x, y);
-					//spacex = (_x - x)*1.5;
+					lastcharx = (int)((_x - x)*1.5);
+					printf("%i ", lastcharx)
 					x = _x;
 				}
 			}
 
-			else
-				++x;
+			else{
+				++x, ++spacex;
+				if(spacex > lastcharx)
+
 				//putpixel(img, x++, y, SDL_MapRGB(img->format, 0, 255, 255));
+			}
 		}
 		//display_image(img);
 		++y;
@@ -125,15 +134,17 @@ void intoMatrices(SDL_Surface* img)
 	fclose(f);
 
 	f = fopen("inputs_RDN.txt", "r");
-	char* buf = calloc(101, sizeof(char));
-	for(int i = 0; i < 10 ;++i){
+	char* buf = calloc(257, sizeof(char));
+	for(int i = 0; i < char_found ;++i){
 		fscanf(f, "%s", buf);
-		for(int x = 0; x < 16 ; ++x){
-			for(int y = 0; y < 16; ++y)
-				printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
+		if(i > 649 && i < 700){
+			for(int x = 0; x < 16 ; ++x){
+				for(int y = 0; y < 16; ++y)
+					printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
+				printf("\n");
+			}	
 			printf("\n");
 		}
-		printf("\n");
 	}
 
 }
