@@ -83,7 +83,7 @@ void read(size_t mode)
 			inputs[j] = fgetc(fichier_I) - 48;
 			//printf("%f", inputs[j]);
 		}
-		printf("\n");
+		//printf("\n");
 		eval(inputs);
 		size_t found = find();
 		charac = trans(found, mode);
