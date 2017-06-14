@@ -26,6 +26,7 @@ GtkImage *image = NULL;
 GtkWidget *button_commencer = NULL;
 GtkWidget *button_recup = NULL;
 GtkWidget *button_quit = NULL;
+GtkWidget *percent_label = NULL;
 
 void fileselector_selection_changed()
 {
