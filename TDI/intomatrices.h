@@ -111,9 +111,10 @@ void intoMatrices(SDL_Surface* img)
 			}
 
 			else
-				putpixel(img, x++, y, SDL_MapRGB(img->format, 0, 255, 255));
+				++x;
+				//putpixel(img, x++, y, SDL_MapRGB(img->format, 0, 255, 255));
 		}
-		display_image(img);
+		//display_image(img);
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
