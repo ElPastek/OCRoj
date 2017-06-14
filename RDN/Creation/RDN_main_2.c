@@ -41,9 +41,10 @@ void train()
 			{
 				//network[j] -> error = results[i] - (network[j] -> val);
 				int is_stimul = (j + nb_out - nb_tot) == (i%nb_out);
-				printf("stimul : %d\n",is_stimul);
-				network[j] -> error = derivative(network[j] -> val) * //(results[i] - (network[j] -> val));
+				//printf("stimul : %d\n",is_stimul);
+				network[j] -> error =  ////derivative(network[j] -> val) *
 				(is_stimul - (network[j] -> val));
+				//printf("err : %f, j = %zu\n", network[j]->error, j);
 				network[j] -> bias += network[j] -> error;
 			}
 			for (; j > (nb_ins - 1) ; j--) // hidden layers
@@ -51,8 +52,9 @@ void train()
 				double sum = 0;
 				//size_t b = nb_tot - nb_out;
 				size_t b = ((j - nb_ins) / nb_hne + 1 ) * nb_hne + nb_ins;
-				size_t e = b + nb_hne	;
-				for (; b < nb_tot && b < e; b++)
+				//printf("b : %zu \n", b);
+				//size_t e = b + nb_hne	;
+				for (; b < nb_tot /*&& b < e*/ ; b++)
 					sum += (network[b] -> error) * ((network[b] -> weights)[(j - nb_ins) % nb_hne]);
 				network[j] -> error = sum * derivative(network[j] -> val);
 				network[j] -> bias += network[j] -> error;
@@ -63,7 +65,7 @@ void train()
 				size_t l = network[j] -> len;
 				for (size_t k = 0 ; k < l ; k++)
 				{
-					((network[j] -> weights)[k]) += 0.2 *
+					((network[j] -> weights)[k]) += 0.05 *
 					(network[j] -> error) *
 					(network[(network[j] -> inputs) + k] -> val);
 				}
@@ -73,7 +75,7 @@ void train()
 		epoch++;
 		//printf("epoch : %d\n", epoch);
 
-	} while (!(verif(r_results, nb_out)) && epoch<1000); //) && epoch < 1000000);
+	} while (!(verif(r_results, nb_out)) && epoch<10000); //) && epoch < 1000000);
 		//(epoch < 1));
 	/*
 	if (epoch == 1000000)
@@ -90,7 +92,7 @@ int verif(double tab[], size_t len)
 	int check = 1;
 	for (size_t i = 0 ; (i < len) && check; i++) {
 		check = tab[i] > 0.5;
-		if(i%5 == 0)
+		//if(i%5 == 0)
 			printf("%f,",tab[i]);
 	}
 	printf("\n");

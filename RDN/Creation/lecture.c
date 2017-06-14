@@ -24,7 +24,7 @@ void create(char *path)
 	double bias;
 	size_t inputs;
 	double *weights;
-	for (size_t i = 1 ; i < nb_col * nb_hne + nb_out + 1; i++) {
+	for (size_t i = 0 ; i < nb_col * nb_hne + nb_out; i++) {
 		assert(fscanf(fichier, "%zu,%lf,%zu", &len, &bias, &inputs));
 		weights = malloc(sizeof(double) * len);
 		for (size_t j = 0 ; j < len ; j++) {
@@ -32,7 +32,7 @@ void create(char *path)
 			assert(fscanf(fichier, "%lf", &weights[j]));
 		}
 
-		network[nb_ins + i - 1] = init_neuron(len, inputs, weights, bias);
+		network[nb_ins + i] = init_neuron(len, inputs, weights, bias);
 	}
 	fclose(fichier);
 }
@@ -51,8 +51,8 @@ void eval(double inputs[])
 size_t find()
 {
 	size_t retour = nb_ins + nb_col * nb_hne;
-	double max    = network[nb_ins + nb_col * nb_hne] -> val;
-	for (size_t i = nb_ins + nb_col * nb_hne + 1; i < nb_tot; i++) {
+	double max    = network[retour] -> val;
+	for (size_t i = retour + 1; i < nb_tot; i++) {
 		if ((network[i]->val) > max) {
 			max = network[i]->val;
 			retour = i;
@@ -80,8 +80,10 @@ void read(size_t mode)
 		{
 			//fseek(fichier_I, +1, SEEK_CUR);
 			//assert(fscanf(fichier_I, "%lf", &inputs[j]));
-			inputs[j] = fgetc(fichier_I);
+			inputs[j] = fgetc(fichier_I) - 48;
+			printf("%f", inputs[j]);
 		}
+		printf("\n");
 		eval(inputs);
 		size_t found = find();
 		charac = trans(found, mode);
