@@ -89,6 +89,7 @@ void intoMatrices(SDL_Surface* img)
 	while(y < img->h)
   {
 		x = 0;
+
 		while(x < img->w)
     {
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
@@ -110,8 +111,9 @@ void intoMatrices(SDL_Surface* img)
 			}
 
 			else
-				++x;
+				putpixel(img, x++, y, SDL_MapRGB(img->format, 0, 255, 255));
 		}
+		display_image(img);
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
@@ -125,7 +127,7 @@ void intoMatrices(SDL_Surface* img)
 		fscanf(f, "%s", buf);
 		for(int x = 0; x < 10 ; ++x){
 			for(int y = 0; y < 10; ++y)
-				printf("%c", buf[x + y*10] == '0' ? '.' : '#');
+				printf("%c", buf[y + x*10] == '0' ? '.' : '#'); //jui debil
 			printf("\n");
 		}
 		printf("\n");

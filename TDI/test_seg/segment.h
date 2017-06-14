@@ -79,7 +79,7 @@ void MakingBlocks(SDL_Surface* img)
 	}
 
 	//lines and char
-	y = 0;
+	/*y = 0;
 	while(y < img->h){
 		x = 0;
 		while(x < img->w){
@@ -96,5 +96,5 @@ void MakingBlocks(SDL_Surface* img)
 			y = g==r ? CutPrecise(img, x, y, 1) : y + 1;
 		}
 		++x; 
-	}
+	}*/
 }  
