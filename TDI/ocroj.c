@@ -1,13 +1,15 @@
 # include <gtk/gtk.h>
 # include <stdlib.h>
 # include <stdio.h>
-//# include <SDL/SDL.h>
-//# include <SDL2/SDL_image.h>
-//# include "segment.h"
-//# include "grey_level.h"
-//# include "black_and_white.h"
-//# include "open_image.h"
-//# include "pixel_operations.h"
+# include <SDL/SDL.h>
+# include <SDL2/SDL_image.h>
+# include <err.h>
+# include "pixel_operations.h"
+# include "segment.h"
+# include "grey_level.h"
+# include "black_and_white.h"
+# include "open_image.h"
+
 
 typedef struct
 {
@@ -35,11 +37,11 @@ void on_Commencer_clicked()
 {
   if (filepath != NULL)
   {
-    /*SDL_Surface *img = LoadIMG(filepath);
-    grey_level(img);
-    black_and_white(img);
+    SDL_Surface *img = load_image(filepath);
+    To_GreyLevel(img);
+    To_Black_And_White(img);
     MakingBlocks(img);
-    gtk_image_set_from_file(image, "NewImg.bmp");*/
+    gtk_image_set_from_file(image, "NewImg");
   }
   else
   {
