@@ -97,6 +97,4 @@ void MakingBlocks(SDL_Surface* img)
 		}
 		++x;
 	}
-
-	SDL_SaveBMP(img, "segmented_image");
 }
