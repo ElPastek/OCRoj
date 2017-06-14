@@ -91,7 +91,7 @@ int verif(double tab[], size_t len)
 {
 	int check = 1;
 	for (size_t i = 0 ; (i < len) && check; i++) {
-		check = tab[i] > 0.5;
+		check = tab[i] > 0.6;
 		//if(i%5 == 0)
 			printf("%f,",tab[i]);
 	}

@@ -81,7 +81,7 @@ void read(size_t mode)
 			//fseek(fichier_I, +1, SEEK_CUR);
 			//assert(fscanf(fichier_I, "%lf", &inputs[j]));
 			inputs[j] = fgetc(fichier_I) - 48;
-			printf("%f", inputs[j]);
+			//printf("%f", inputs[j]);
 		}
 		printf("\n");
 		eval(inputs);
