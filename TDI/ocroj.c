@@ -41,7 +41,7 @@ void on_Commencer_clicked()
     To_GreyLevel(img);
     To_Black_And_White(img);
     MakingBlocks(img);
-    gtk_image_set_from_file(image, "NewImg");
+    gtk_image_set_from_file(image, "segmented_image");
   }
   else
   {

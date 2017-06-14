@@ -95,6 +95,8 @@ void MakingBlocks(SDL_Surface* img)
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
 			y = g==r ? CutPrecise(img, x, y, 1) : y + 1;
 		}
-		++x; 
+		++x;
 	}
-}  
+
+	SDL_SaveBMP(img, "segmented_image");
+}
