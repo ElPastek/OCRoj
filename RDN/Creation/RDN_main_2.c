@@ -7,13 +7,12 @@ size_t nb_out;
 size_t nb_tot;
 size_t nb_elem; 
 double *inputs;
-double *results;
 NEURON **network;
 
 void train()
 {
 	
-	double r_results[nb_elem];
+	double r_results[nb_out];
 
 	int epoch = 0;
 
@@ -25,23 +24,24 @@ void train()
 			size_t j = 0;
 			//propagation of values
 			for (; j < nb_ins ; j++)
-				network[j] -> val = inputs[i * nb_ins + j];
+				network[j] -> val = inputs[i  * nb_ins + j];
 			
 			for (; j < nb_tot ; j++)
 				network[j] -> val = n_output(network[j], network);
 
 			//verification
 			size_t found = find();
-			size_t found_o = found + nb_ins + nb_hne * nb_col;
-			printf("c : %c e : %d\n", (char)(network[found_o] -> val) + 32, epoch); 
+			//size_t found_o = found + nb_ins + nb_hne * nb_col;
+			printf("a : %c c : %c e : %d\n", (char)(i%nb_out) + 32, (char)(found) + 32, epoch); 
 			//network[nb_tot - 1] -> val);
-			r_results[i] = network[found_o] -> val;//network[nb_tot - 1] -> val;
-			
+			r_results[i%nb_out] = //network[found_o] -> val;//network[nb_tot - 1] -> val;
+			network[i%nb_out + nb_ins + nb_hne * nb_col]->val;
 			//propagation of errors
-			for (--j; j > nb_tot - nb_out - 1; j--) //outputs
+			for (--j; j > (nb_tot - nb_out - 1); j--) //outputs
 			{
 				//network[j] -> error = results[i] - (network[j] -> val);
-				int is_stimul = (j + nb_out - nb_tot) == results[i];
+				int is_stimul = (j + nb_out - nb_tot) == (i%nb_out);
+				printf("stimul : %d\n",is_stimul);
 				network[j] -> error = derivative(network[j] -> val) * //(results[i] - (network[j] -> val));
 				(is_stimul - (network[j] -> val));
 				network[j] -> bias += network[j] -> error;
@@ -63,7 +63,7 @@ void train()
 				size_t l = network[j] -> len;
 				for (size_t k = 0 ; k < l ; k++)
 				{
-					((network[j] -> weights)[k]) += 0.5 *
+					((network[j] -> weights)[k]) += 0.2 *
 					(network[j] -> error) *
 					(network[(network[j] -> inputs) + k] -> val);
 				}
@@ -73,22 +73,27 @@ void train()
 		epoch++;
 		//printf("epoch : %d\n", epoch);
 
-	} while (!verif(r_results, nb_elem) && epoch < 1000000);
+	} while (!(verif(r_results, nb_out)) && epoch<1000); //) && epoch < 1000000);
 		//(epoch < 1));
+	/*
 	if (epoch == 1000000)
 	{
 		for (size_t o = 0; o < 10 ; o++)
 		printf("ERRR \n \n \n \n \n \n \n \n");
 		network = init__network(nb_ins, nb_col, nb_hne, nb_out);//, NULL, NULL);
 		train();
-	}
+	}*/
 }
 
 int verif(double tab[], size_t len)
 {
 	int check = 1;
-	for (size_t i = 0 ; (i < len) && check; i++)
-		check = tab[i] > 0.7;
+	for (size_t i = 0 ; (i < len) && check; i++) {
+		check = tab[i] > 0.5;
+		if(i%5 == 0)
+			printf("%f,",tab[i]);
+	}
+	printf("\n");
 	return check;
 	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
 }
@@ -130,8 +135,7 @@ void open_training()
 	FILE* fichier = NULL;
 	fichier = fopen("training", "r");
 	assert(fscanf(fichier, "%zu,%zu,%zu", &nb_ins, &nb_out, &nb_elem));
-	results = malloc(nb_elem * sizeof(double));
-	inputs  = malloc(nb_elem * nb_ins * sizeof(double));
+	inputs  = malloc(nb_elem * nb_ins * sizeof(size_t));
 	/*
 	for (size_t i = 0 ; i < nb_elem ; i++)
 	{
@@ -139,8 +143,6 @@ void open_training()
 		assert(fscanf(fichier, "%lf", &results[i]));
 	}
 	*/
-	for (size_t i = 0 ; i < nb_elem ; i++)
-		results[i] = i % nb_ins;
 
 	for (size_t i = 0 ; i < nb_elem ; i++)
 	{

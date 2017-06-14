@@ -75,10 +75,12 @@ void read(size_t mode)
 	assert(fscanf(fichier_I, "%zu", &nb_scan));
 	for (size_t i = 0 ; i < nb_scan ; i++)
 	{
+		fseek(fichier_I, +1, SEEK_CUR);
 		for (size_t j = 0 ; j < nb_ins ; j++)
 		{
-			fseek(fichier_I, +1, SEEK_CUR);
-			assert(fscanf(fichier_I, "%lf", &inputs[j]));
+			//fseek(fichier_I, +1, SEEK_CUR);
+			//assert(fscanf(fichier_I, "%lf", &inputs[j]));
+			inputs[j] = fgetc(fichier_I);
 		}
 		eval(inputs);
 		size_t found = find();
