@@ -32,19 +32,19 @@ void mark(SDL_Surface* img, int x, int _y){
 }
 char* resize(struct mat* mat){
 	int x, y = 0;
-	char* resized = calloc(101, sizeof(char));
-	if(mat->c < 10 || mat->l < 10)
-		for(int i = 0; i < 101; i++){ resized[i] = '0'; }
+	char* resized = calloc(257, sizeof(char));
+	if(mat->c < 16 || mat->l < 16)
+		for(int i = 0; i < 257; i++){ resized[i] = '0'; }
 	while(y < mat->l){
 		x = 0;
 		while(x < mat->c){
-			resized[(x*10/mat->c) + (y*10/mat->l) * 10] = mat->data[x + y *mat->c];
+			resized[(x*16/mat->c) + (y*16/mat->l) * 16] = mat->data[x + y *mat->c];
 			++x;
 		}
 		++y;
 	}
-	mat->c = 10, mat->l = 10;
-	resized[100] = '\n';
+	mat->c = 16, mat->l = 16;
+	resized[256] = '\n';
 	return resized;
 }
 
@@ -118,17 +118,17 @@ void intoMatrices(SDL_Surface* img)
 		++y;
 	}
 	printf("Found %i char.\n", char_found);
-	fprintf(f, "100,95,%i\n", char_found);
+	fprintf(f, "256,95,%i\n", char_found);
 	for(; l->next ; l = l->next)
-		fwrite(l->next->m->data, sizeof(char), 101, f);
+		fwrite(l->next->m->data, sizeof(char), 257, f);
 	fclose(f);
 	f = fopen("training", "r");
 	char* buf = calloc(101, sizeof(char));
 	for(int i = 0; i < 95 ;++i){
 		fscanf(f, "%s", buf);
-		for(int x = 0; x < 10 ; ++x){
-			for(int y = 0; y < 10; ++y)
-				printf("%c", buf[y + x*10] == '0' ? '.' : '#'); //jui debil
+		for(int x = 0; x < 16 ; ++x){
+			for(int y = 0; y < 16; ++y)
+				printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
 			printf("\n");
 		}
 		printf("\n");
