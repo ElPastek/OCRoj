@@ -82,6 +82,7 @@ int __intoMat(SDL_Surface* img, struct list* l, int x, int y){
 void intoMatrices(SDL_Surface* img)
 {
 	int x, y = 0, char_found=0;
+	//double spacex = 0;
 	Uint8 r, g, b;
 	FILE* f = fopen("training", "w+");
 	struct list* l = malloc(sizeof(struct list));
@@ -89,7 +90,7 @@ void intoMatrices(SDL_Surface* img)
 	while(y < img->h)
   {
 		x = 0;
-
+		
 		while(x < img->w)
     {
 			SDL_GetRGB(getpixel(img, x, y), img->format, &r, &g, &b);
@@ -101,11 +102,11 @@ void intoMatrices(SDL_Surface* img)
 					}
 				}
 				else{
-					
 					//printf("Char found at %i\n", x);
 					char_found++;
 					int _x = __intoMat(img, l, x, y);
 					mark(img, x, y);
+					//spacex = (_x - x)*1.5;
 					x = _x;
 				}
 			}
@@ -122,7 +123,7 @@ void intoMatrices(SDL_Surface* img)
 	for(; l->next ; l = l->next)
 		fwrite(l->next->m->data, sizeof(char), 257, f);
 	fclose(f);
-	/*f = fopen("training", "r");
+	f = fopen("training", "r");
 	char* buf = calloc(101, sizeof(char));
 	for(int i = 0; i < 95 ;++i){
 		fscanf(f, "%s", buf);
@@ -132,6 +133,6 @@ void intoMatrices(SDL_Surface* img)
 			printf("\n");
 		}
 		printf("\n");
-	}*/
+	}
 
 }
