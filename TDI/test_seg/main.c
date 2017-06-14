@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     errx(1, "Please enter an image path.");
   init_sdl();
   SDL_Surface *image = load_image(argv[1]);
-  display_image(image);
+	display_image(image);
   To_GreyLevel(image);
   //display_image(image);
   To_Black_And_White(image);
