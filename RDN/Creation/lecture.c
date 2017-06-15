@@ -94,7 +94,7 @@ void read_RDN(size_t mode)
 }
 
 
-int main(int argc, char *argv[])
+/*int main(int argc, char *argv[])
 {
 	//char *path_RDN[] = "saved_RDN.txt";
 	size_t mode = 0;
@@ -103,9 +103,9 @@ int main(int argc, char *argv[])
 	create("saved_RDN_LBIW.txt");
 	read_RDN(mode);
 	//save();
-	/*double inputs[2] = {0 ,1};
+	double inputs[2] = {0 ,1};
 	eval(inputs);
 	size_t pos = find(network);
-	printf("%lf\n", network[pos] -> val);*/
+	printf("%lf\n", network[pos] -> val);
 	return 0;
-}
+}*/

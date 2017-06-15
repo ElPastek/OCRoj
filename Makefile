@@ -5,7 +5,7 @@ CC=gcc
 CPPFLAGS= `pkg-config --cflags sdl` `pkg-config --cflags gtk+-3.0` 
 CFLAGS= -Wall -Werror -Wextra -std=c99 
 LDFLAGS= -rdynamic
-LDLIBS= `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0`
+LDLIBS= -lm `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0`
 
 SRC= ocroj.c 
 OBJ= ${SRC:.c=.o}
@@ -21,5 +21,6 @@ main: ${OBJ}
 clean:
 	rm -f *~ *.o
 	rm -f ocroj
+	rm -f outputs_RDN.txt
 
 # END MDRRR

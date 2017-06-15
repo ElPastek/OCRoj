@@ -11,7 +11,7 @@
 # include "TDI/black_and_white.h"
 # include "TDI/open_image.h"
 # include "TDI/intomatrices.h"
-# include "RDN/Creation/lecture.h"
+# include "RDN/Creation/lecture.c"
 //# include "RDN/Creation/RDN_main_2.h"
 
 typedef struct
@@ -37,23 +37,8 @@ void fileselector_selection_changed()
   gtk_image_set_from_file(image, filepath);
   gtk_label_set_label(percent_label, "0 %");
 }
-/*
-void
-(*GSpawnChildSetupFunc) (gpointer user_data);
 
-gboolean
-g_spawn_sync (const gchar *working_directory,
-              gchar **argv,
-              gchar **envp,
-              GSpawnFlags flags,
-              GSpawnChildSetupFunc child_setup,
-              gpointer user_data,
-              gchar **standard_output,
-              gchar **standard_error,
-              gint *exit_status,
-              GError **error);
 
-*/
 void on_Commencer_clicked()
 {
   printf("coucou");
@@ -70,8 +55,9 @@ void on_Commencer_clicked()
     intoMatrices(img);
     gtk_label_set_label(percent_label, "65 %");
     create("saved_RDN_LBIW.txt");
-    read(0);
     gtk_label_set_label(percent_label, "85 %");
+    read_RDN(0);
+    gtk_label_set_label(percent_label, "100 %");
   }
   else
   {
