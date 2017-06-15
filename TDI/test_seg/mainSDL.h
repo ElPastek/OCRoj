@@ -8,6 +8,6 @@
 # include "pixel_operations.h"
 # include "grey_level.h"
 # include "black_and_white.h"
-# include "segment.h"
+# include "bestseg.h"
 # include "intomatrices.h"
 
