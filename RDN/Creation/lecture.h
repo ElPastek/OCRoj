@@ -49,6 +49,6 @@ NEURON **init__network()
 
 void create(char *path);
 
-void read();
+void read_RDN(size_t mode);
 
 size_t find();//NEURON **network);
