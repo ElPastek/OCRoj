@@ -12,7 +12,7 @@ NEURON **network;
 void train()
 {
 	
-	double r_results[nb_out];
+	double r_results[nb_elem];
 
 	int epoch = 0;
 
@@ -34,7 +34,7 @@ void train()
 			//size_t found_o = found + nb_ins + nb_hne * nb_col;
 			printf("a : %c c : %c e : %d\n", (char)(i%nb_out) + 32, (char)(found) + 32, epoch); 
 			//network[nb_tot - 1] -> val);
-			r_results[i%nb_out] = //network[found_o] -> val;//network[nb_tot - 1] -> val;
+			r_results[i] = //network[found_o] -> val;//network[nb_tot - 1] -> val;
 			network[i%nb_out + nb_ins + nb_hne * nb_col]->val;
 			//propagation of errors
 			for (--j; j > (nb_tot - nb_out - 1); j--) //outputs
@@ -75,7 +75,7 @@ void train()
 		epoch++;
 		//printf("epoch : %d\n", epoch);
 
-	} while (!(verif(r_results, nb_out)) && epoch<10000); //) && epoch < 1000000);
+	} while (!(verif(r_results, nb_elem)) && epoch<10000); //) && epoch < 1000000);
 		//(epoch < 1));
 	/*
 	if (epoch == 1000000)

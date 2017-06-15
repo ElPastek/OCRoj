@@ -61,7 +61,7 @@ size_t find()
 	return retour + nb_out - nb_tot;
 }
 
-void read(size_t mode)
+void read_RDN(size_t mode)
 {
 	FILE* fichier_O = NULL;
 	FILE* fichier_I = NULL;
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 	if (argc == 2)
 		mode = atoi(argv[1]);
 	create("saved_RDN_LBIW.txt");
-	read(mode);
+	read_RDN(mode);
 	//save();
 	/*double inputs[2] = {0 ,1};
 	eval(inputs);
