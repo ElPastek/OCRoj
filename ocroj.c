@@ -1,15 +1,18 @@
 # include <gtk/gtk.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <glib.h>
 # include <SDL/SDL.h>
 # include <SDL2/SDL_image.h>
 # include <err.h>
-# include "pixel_operations.h"
-# include "segment.h"
-# include "grey_level.h"
-# include "black_and_white.h"
-# include "open_image.h"
-
+# include "TDI/pixel_operations.h"
+# include "TDI/segment.h"
+# include "TDI/grey_level.h"
+# include "TDI/black_and_white.h"
+# include "TDI/open_image.h"
+# include "TDI/intomatrices.h"
+# include "RDN/Creation/lecture.h"
+//# include "RDN/Creation/RDN_main_2.h"
 
 typedef struct
 {
@@ -26,27 +29,53 @@ GtkImage *image = NULL;
 GtkWidget *button_commencer = NULL;
 GtkWidget *button_recup = NULL;
 GtkWidget *button_quit = NULL;
-GtkWidget *percent_label = NULL;
+GtkLabel *percent_label = NULL;
 
 void fileselector_selection_changed()
 {
   filepath = gtk_file_chooser_get_filename(file_selector);
   gtk_image_set_from_file(image, filepath);
+  gtk_label_set_label(percent_label, "0 %");
 }
+/*
+void
+(*GSpawnChildSetupFunc) (gpointer user_data);
 
+gboolean
+g_spawn_sync (const gchar *working_directory,
+              gchar **argv,
+              gchar **envp,
+              GSpawnFlags flags,
+              GSpawnChildSetupFunc child_setup,
+              gpointer user_data,
+              gchar **standard_output,
+              gchar **standard_error,
+              gint *exit_status,
+              GError **error);
+
+*/
 void on_Commencer_clicked()
 {
+  printf("coucou");
   if (filepath != NULL)
   {
     SDL_Surface *img = load_image(filepath);
     To_GreyLevel(img);
+    gtk_label_set_label(percent_label, "20 %");
     To_Black_And_White(img);
+    gtk_label_set_label(percent_label, "40 %");
     MakingBlocks(img);
     gtk_image_set_from_file(image, "segmented_image");
+    gtk_label_set_label(percent_label, "50 %");
+    intoMatrices(img);
+    gtk_label_set_label(percent_label, "65 %");
+    create("saved_RDN_LBIW.txt");
+    read(0);
+    gtk_label_set_label(percent_label, "85 %");
   }
   else
   {
-    printf("filepath NULL");
+    printf("Aucune image choisie");
   }
 }
 
@@ -57,7 +86,7 @@ void on_quit_clicked()
 
 void on_Recup_clicked()
 {
-
+  
 }
 
 void callback_about(GtkMenuItem *menuitem,gpointer user_data);
@@ -94,10 +123,11 @@ int main(int argc, char *argv[])
 
   button_commencer = GTK_WIDGET(gtk_builder_get_object(builder,"Commencer"));
   g_signal_connect(G_OBJECT(button_commencer), "clicked", G_CALLBACK(on_Commencer_clicked), button_commencer);
+  
+  percent_label = GTK_LABEL(gtk_builder_get_object(builder, "label_percent"));  
 
   button_recup = GTK_WIDGET(gtk_builder_get_object(builder,"button_get_text"));
   g_signal_connect(G_OBJECT(button_recup), "clicked", G_CALLBACK(on_Recup_clicked), button_recup);
-  g_signal_connect(G_OBJECT(fenetre_principale), "destroy", G_CALLBACK(gtk_main_quit), gtk_main_quit);
 
   button_quit = GTK_WIDGET(gtk_builder_get_object(builder, "quit"));
   g_signal_connect(G_OBJECT(button_quit), "clicked", G_CALLBACK(on_quit_clicked), button_quit);
