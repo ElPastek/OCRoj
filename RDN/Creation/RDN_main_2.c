@@ -31,16 +31,15 @@ void train()
 
 			//verification
 			size_t found = find();
-			//size_t found_o = found + nb_ins + nb_hne * nb_col;
-			printf("a : %c c : %c e : %d\n", (char)(i%nb_out) + 32, (char)(found) + 32, epoch); 
+			//size_t found_o = found + nb_ins + nb_hne * nb_col;;
 			//network[nb_tot - 1] -> val);
 			r_results[i%nb_out] = //network[found_o] -> val;//network[nb_tot - 1] -> val;
 			network[i%nb_out + nb_ins + nb_hne * nb_col]->val;
+            printf("fin : %zu ", i%nb_out + nb_ins + nb_hne);
 			//propagation of errors
 			for (--j; j > (nb_tot - nb_out - 1); j--) //outputs
 			{
-				//network[j] -> error = results[i] - (network[j] -> val);
-				int is_stimul = (j + nb_out - nb_tot) == (i%nb_out);
+				double is_stimul = (j + nb_out - nb_tot) == (i%nb_out);
 				//printf("stimul : %d\n",is_stimul);
 				network[j] -> error =  ////derivative(network[j] -> val) *
 				(is_stimul - (network[j] -> val));
@@ -70,12 +69,14 @@ void train()
 					(network[(network[j] -> inputs) + k] -> val);
 				}
 			}
+			printf("i : %zu scan : %zu ", i, i%nb_out);
+			printf("a : %c c : %c e : %d\n", (char)(i%nb_out) + 32, (char)(found) + 32, epoch); 
 		}
 
 		epoch++;
 		//printf("epoch : %d\n", epoch);
 
-	} while (!(verif(r_results, nb_out)) && epoch<10000); //) && epoch < 1000000);     nb_elem
+	} while (!(verif(r_results, nb_out)) && epoch<400); //) && epoch < 1000000);     nb_elen
 		//(epoch < 1));
 	/*
 	if (epoch == 1000000)
@@ -103,8 +104,8 @@ int verif(double tab[], size_t len)
 size_t find()
 {
 	size_t retour = nb_ins + nb_col * nb_hne;
-	double max    = network[nb_ins + nb_col * nb_hne] -> val;
-	for (size_t i = nb_ins + nb_col * nb_hne + 1; i < nb_tot; i++) {
+	double max    = network[retour] -> val;
+	for (size_t i = retour + 1; i < nb_tot; i++) {
 		if ((network[i] -> val) > max) {
 			max = network[i] -> val;
 			retour = i;
