@@ -61,12 +61,12 @@ size_t find()
 	return retour + nb_out - nb_tot;
 }
 
-void read(size_t mode)
+void read_RDN(size_t mode)
 {
 	FILE* fichier_O = NULL;
 	FILE* fichier_I = NULL;
-	fichier_O = fopen("outputs_RDN.txt", "w+");
-	fichier_I = fopen("inputs_RDN.txt" , "r");
+	fichier_O = fopen("RDN/Creation/outputs_RDN.txt", "w+");
+	fichier_I = fopen("RDN/Creation/inputs_RDN.txt" , "r");
 	rewind(fichier_I);
 	rewind(fichier_O);
 	size_t nb_scan;
@@ -81,9 +81,9 @@ void read(size_t mode)
 			//fseek(fichier_I, +1, SEEK_CUR);
 			//assert(fscanf(fichier_I, "%lf", &inputs[j]));
 			inputs[j] = fgetc(fichier_I) - 48;
-			printf("%f", inputs[j]);
+			//printf("%f", inputs[j]);
 		}
-		printf("\n");
+		//printf("\n");
 		eval(inputs);
 		size_t found = find();
 		charac = trans(found, mode);
@@ -94,18 +94,18 @@ void read(size_t mode)
 }
 
 
-int main(int argc, char *argv[])
+/*int main(int argc, char *argv[])
 {
 	//char *path_RDN[] = "saved_RDN.txt";
 	size_t mode = 0;
 	if (argc == 2)
 		mode = atoi(argv[1]);
 	create("saved_RDN_LBIW.txt");
-	read(mode);
+	read_RDN(mode);
 	//save();
-	/*double inputs[2] = {0 ,1};
+	double inputs[2] = {0 ,1};
 	eval(inputs);
 	size_t pos = find(network);
-	printf("%lf\n", network[pos] -> val);*/
+	printf("%lf\n", network[pos] -> val);
 	return 0;
-}
+}*/

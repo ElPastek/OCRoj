@@ -84,7 +84,7 @@ void intoMatrices(SDL_Surface* img)
 	int x, y = 0, char_found=0;
 	//double spacex = 0;
 	Uint8 r, g, b;
-	FILE* f = fopen("training", "w+");
+	FILE* f = fopen("inputs_RDN.txt", "w+");
 	struct list* l = malloc(sizeof(struct list));
 	l->next = NULL;
 	while(y < img->h)
@@ -118,21 +118,21 @@ void intoMatrices(SDL_Surface* img)
 		//display_image(img);
 		++y;
 	}
-	printf("Found %i char.\n", char_found);
-	fprintf(f, "256,95,%i\n", char_found);
+	fprintf(f, "%i\n", char_found);
 	for(; l->next ; l = l->next)
 		fwrite(l->next->m->data, sizeof(char), 257, f);
 	fclose(f);
-	f = fopen("training", "r");
-	char* buf = calloc(101, sizeof(char));
-	for(int i = 0; i < 95 ;++i){
-		fscanf(f, "%s", buf);
-		for(int x = 0; x < 16 ; ++x){
-			for(int y = 0; y < 16; ++y)
-				printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
-			printf("\n");
-		}
-		printf("\n");
-	}
 
+	f = fopen("inputs_RDN.txt", "r");
+	char* buf = calloc(257, sizeof(char));
+	for(int i = 0; i < 34 ;++i){
+		fscanf(f, "%s", buf);
+			for(int x = 0; x < 16 ; ++x){
+				for(int y = 0; y < 16; ++y)
+					printf("%c", buf[y + x*16] == '0' ? '.' : '#'); //jui debil
+				printf("\n");
+			}
+			printf("\n");	
+	}
+	printf("Found %i char.\n", char_found);
 }
