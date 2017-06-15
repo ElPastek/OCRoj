@@ -65,8 +65,8 @@ void read_RDN(size_t mode)
 {
 	FILE* fichier_O = NULL;
 	FILE* fichier_I = NULL;
-	fichier_O = fopen("outputs_RDN.txt", "w+");
-	fichier_I = fopen("inputs_RDN.txt" , "r");
+	fichier_O = fopen("RDN/Creation/outputs_RDN.txt", "w+");
+	fichier_I = fopen("RDN/Creation/inputs_RDN.txt" , "r");
 	rewind(fichier_I);
 	rewind(fichier_O);
 	size_t nb_scan;

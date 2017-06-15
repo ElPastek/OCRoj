@@ -20,6 +20,4 @@ clean:
 	rm -f ${DEP}
 	rm -f ${PRG}
 	rm -f *.out
-	rm -f outputs_RDN.txt
-	rm -f saved_RDN_LBIW.txt
 # END Makefile

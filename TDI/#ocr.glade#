@@ -134,6 +134,7 @@
                 <property name="margin_top">10</property>
                 <property name="label" translatable="yes">0 %</property>
                 <property name="justify">center</property>
+                <signal name="activate-link" handler="on_Commencer_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -142,19 +143,19 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="open_output">
-                <property name="label" translatable="yes">Ouvrir Sortie</property>
+              <object class="GtkButton" id="button_get_text">
+                <property name="label" translatable="yes">Récupérer le texte</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="margin_right">25</property>
                 <property name="margin_top">25</property>
                 <property name="margin_bottom">20</property>
-                <signal name="clicked" handler="on_open_output_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_Recup_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="fill">True</property>
                 <property name="pack_type">end</property>
                 <property name="position">2</property>
               </packing>
@@ -170,49 +171,6 @@
       </object>
     </child>
     <child type="titlebar">
-      <placeholder/>
-    </child>
-  </object>
-  <object class="GtkMessageDialog" id="output_screen">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
-    <property name="message_type">other</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="homogeneous">True</property>
-            <property name="layout_style">end</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkButton" id="quit_output">
-                <property name="label" translatable="yes">Quitter</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <child>
       <placeholder/>
     </child>
   </object>

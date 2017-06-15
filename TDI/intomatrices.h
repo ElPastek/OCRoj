@@ -89,7 +89,7 @@ void intoMatrices(SDL_Surface* img)
 	int x, y = 0, char_found=0;
 	int spacex=0; //, lastcharx;
 	Uint8 r, g, b;
-	FILE* f = fopen("inputs_RDN.txt", "w+");
+	FILE* f = fopen("RDN/Creation/inputs_RDN.txt", "w+");
 	struct list* l = malloc(sizeof(struct list));
 	l->next = NULL;
 	while(y < img->h)
