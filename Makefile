@@ -21,6 +21,5 @@ main: ${OBJ}
 clean:
 	rm -f *~ *.o
 	rm -f ocroj
-	rm -f outputs_RDN.txt
 
 # END MDRRR

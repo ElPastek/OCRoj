@@ -57,7 +57,6 @@ char* output_to_string()
 
 void on_Commencer_clicked()
 {
-  printf("coucou");
   if (filepath != NULL)
   {
     SDL_Surface *img = load_image(filepath);
