@@ -3,7 +3,8 @@
 # include <stdio.h>
 # include <glib.h>
 # include <SDL/SDL.h>
-# include <SDL2/SDL_image.h>
+//# include <SDL2/SDL_image.h>
+# include <SDL/SDL_image.h>
 # include <err.h>
 # include "TDI/pixel_operations.h"
 # include "TDI/segment.h"
@@ -11,8 +12,7 @@
 # include "TDI/black_and_white.h"
 # include "TDI/open_image.h"
 # include "TDI/intomatrices.h"
-# include "RDN/Creation/lecture.c"
-//# include "RDN/Creation/RDN_main_2.h"
+# include "RDN/Lecture/lecture.c"
 
 typedef struct
 {
@@ -69,9 +69,9 @@ void on_Commencer_clicked()
     gtk_label_set_label(percent_label, "50 %");
     intoMatrices(img);
     gtk_label_set_label(percent_label, "60 %");
-    create("RDN/Creation/saved_RDN_LBIW.txt");
+    load_RDN_from_path("RDN/Creation/saved_RDN_LBIW.txt");
     gtk_label_set_label(percent_label, "70  %");
-    read_RDN(0);
+    read_RDN("ocr");
     //gtk_label_set_label(percent_label, "91 %");
     //gtk_message_dialog_set_markup(GTK_MESSAGE_DIALOG(fenetre_secondaire), output_to_string());    
     gtk_label_set_label(percent_label, "100 %");

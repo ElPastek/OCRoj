@@ -144,7 +144,7 @@ void MakingBlocks(SDL_Surface* img)
 						putpixel(img, xy[2] + i - 3, y - 3, pxl);
 						putpixel(img, xy[0] - i - 1, xy[1] - 1, pxl);
 					}
-					for(int i = 0; i < (xy[1] - y + 3; i++){
+					for(int i = 0; i < (xy[1] - y + 3); i++){
 						putpixel(img, xy[2] - 3, y + i - 3, pxl); //maybe segfault
 						putpixel(img, xy[0] - 1, xy[1] - 1 - i, pxl);
 					}

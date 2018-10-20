@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="RDN" targetName="RDN" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d9ab04a9-f398-4b46-a278-38c2c3d943c2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.izitrain.odt#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.training.odt#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Creation/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/RDN_main_2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/RDN_main_2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/inputs_RDN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Creation/inputs_RDN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/lecture.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/lecture.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/network.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/neuron.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/outputs_RDN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/saved_RDN_LBIW.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/temp.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/training" beforeDir="false" afterPath="$PROJECT_DIR$/Creation/training" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Creation/training_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sans nom 1.odt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alpha_tot9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alphabet_tot.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/izitrain.odt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/training.odt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TDI/test_seg/bestseg.h" beforeDir="false" afterPath="$PROJECT_DIR$/../TDI/test_seg/bestseg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TDI/test_seg/lecture" beforeDir="false" afterPath="$PROJECT_DIR$/../TDI/test_seg/lecture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ocroj.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ocroj.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../segmented_image" beforeDir="false" afterPath="$PROJECT_DIR$/../segmented_image" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="1687011094">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.41" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="RDN (disassembly)" value="2" />
+          <entry key="c" value="2" />
+          <entry key="cmake" value="1" />
+          <entry key="h" value="3" />
+          <entry key="training" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CMakeLists.txt" value="1" />
+          <entry key="Disassembly" value="2" />
+          <entry key="ObjectiveC" value="5" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="GDBCommands" value="3" />
+          <entry key="ObjectiveC" value="89" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.cidr.testingFrameworks.usages" />
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="GDB" value="3" />
+          <entry key="c" value="35" />
+          <entry key="h" value="54" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Creation/training">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="11" selection-start-column="11" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Creation/RDN_main.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2030">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lecture/lecture.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/network.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1156">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/neuron.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1445">
+              <caret line="85" column="1" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lecture/lecture.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/network.h" />
+        <option value="$PROJECT_DIR$/Lecture/lecture.c" />
+        <option value="$PROJECT_DIR$/Lecture/lecture.h" />
+        <option value="$PROJECT_DIR$/Creation/RDN_main.c" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="72" />
+    <option name="y" value="20" />
+    <option name="width" value="1284" />
+    <option name="height" value="728" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="RDN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RDN" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RDN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RDN" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RDN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RDN" type="462c0819:PsiDirectoryNode" />
+              <item name="Creation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RDN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RDN" type="462c0819:PsiDirectoryNode" />
+              <item name="Lecture" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RDN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RDN" type="462c0819:PsiDirectoryNode" />
+              <item name="Training" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="D:/Program Files/Git/bin/git.exe" />
+    <property name="settings.editor.selected.configurable" value="language.cpp" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.RDN">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RDN" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="RDN" TARGET_NAME="RDN" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="RDN" RUN_TARGET_NAME="RDN">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Build All" />
+      <item itemvalue="Application.RDN" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d9ab04a9-f398-4b46-a278-38c2c3d943c2" name="Default Changelist" comment="" />
+      <created>1534452911801</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534452911801</updated>
+      <workItem from="1534452914818" duration="5837000" />
+      <workItem from="1534509323383" duration="268000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="6105000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
+    <layout>
+      <window_info anchor="top" id="Messages" order="0" visible="true" weight="0.23248407" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2468254" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.32643312" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.32643312" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="CMake" order="4" weight="0.26153848" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32961783" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.39968154" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.32643312" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/network.h</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Creation/RDN_main.c</url>
+          <line>18</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/bin/cmake/win/share/cmake-3.12/Modules/CMakeTestCCompiler.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Creation/training">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lecture/lecture.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neuron.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="1" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lecture/lecture.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Creation/RDN_main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2030">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="RDN"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RDN">
+				<Option output="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/RDN.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/."/>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/Creation"/>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/Lecture"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 RDN"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RDN/fast">
+				<Option output="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/RDN.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/."/>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/Creation"/>
+					<Add directory="D:/Users/Romain/Linux/OCRoj/RDN/Lecture"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 RDN/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/Makefile">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main.c">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main.h">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/inputs_RDN.txt">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Creation/training">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Lecture/inputs_RDN.txt">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Lecture/lecture.c">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Lecture/lecture.h">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/Lecture/outputs_RDN.txt">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/network.h">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/neuron.h">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/saved_RDN_LBIW.txt">
+			<Option target="RDN"/>
+		</Unit>
+		<Unit filename="D:/Users/Romain/Linux/OCRoj/RDN/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

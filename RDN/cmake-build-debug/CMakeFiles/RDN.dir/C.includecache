@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main.c
+RDN_main.h
+D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main.h
+
+D:/Users/Romain/Linux/OCRoj/RDN/Creation/RDN_main.h
+stdio.h
+-
+stdlib.h
+-
+../network.h
+D:/Users/Romain/Linux/OCRoj/RDN/network.h
+
+D:/Users/Romain/Linux/OCRoj/RDN/network.h
+neuron.h
+D:/Users/Romain/Linux/OCRoj/RDN/neuron.h
+
+D:/Users/Romain/Linux/OCRoj/RDN/neuron.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+math.h
+-
+time.h
+-
+assert.h
+-
+

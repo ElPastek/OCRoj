@@ -1,0 +1,11 @@
+"D:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\Users\Romain\Linux\OCRoj\RDN
+-- The CXX compiler identification is GNU 6.3.0
+-- Check for working CXX compiler: C:/MinGW/bin/g++.exe
+-- Check for working CXX compiler: C:/MinGW/bin/g++.exe -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Users/Romain/Linux/OCRoj/RDN/cmake-build-debug
