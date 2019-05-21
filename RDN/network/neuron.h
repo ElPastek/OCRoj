@@ -17,10 +17,10 @@ double rand_1_1()
 
 double NormalDistribution(double mu,double sigma)
 {
-	return (mu+sigma*RANDN);
+	return (mu + sigma * RANDN);
 }
 
-typedef struct neuron{
+typedef struct neuron {
 	size_t prev;
 	size_t prev_len;
 	size_t next;
@@ -40,9 +40,10 @@ double derivative(double x)
 
 NEURON *init_neuron(size_t prev, size_t prev_len, size_t next, size_t next_len, double *weights, double bias)
 {
-	NEURON *neuron = malloc(sizeof(NEURON));
+	NEURON *neuron = (NEURON*)malloc(sizeof(NEURON*));
 	if (prev_len != 0) {
-		if (weights == NULL) {
+		if (weights == NULL)
+		{
 			neuron->weights = malloc(prev_len * sizeof(double));
 			for (size_t i = 0 ; i < prev_len ; i++){
 				(neuron -> weights)[i] = NormalDistribution(0, 1 / sqrt(prev_len));
@@ -76,27 +77,27 @@ NEURON *init_neuron(size_t prev, size_t prev_len, size_t next, size_t next_len, 
  *	bin
  *	94c
  */
- 
+
 enum RDN_TYPE_ANALYSIS
 {
 	C94,
 	BIN,
 };
- 
+
 char trans(size_t input, char *mode)
 {
-	if (!strcmp(mode, "94c")) //from 0  to 93
+	if (!strcmp(mode, "94c")) //from 0 to 93
 		return input + 33; //from 33 to 126 (doesnt need to deal with spaces)
 	if (!strcmp(mode, "bin"))
 		return input + 48; //0 or 1
 	printf("wrong mode\n");
 	return input;
 }
-
+/*
 void free_neuron_content(NEURON *neuron)
 {
 	free(neuron->weights);
-}
+}*/
 
 
 /*

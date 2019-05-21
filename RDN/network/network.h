@@ -1,4 +1,4 @@
-# include "neuron.h"
+#include "neuron.h"
 
 double sigmoid(double x)
 {
@@ -11,10 +11,8 @@ typedef struct s_network{
 	size_t nb_hne;
 	size_t nb_out;
 	size_t nb_tot;
-	//double *inputs; 
-	//double *results;
 	NEURON **network; //simul 2 dimentions
-}s_network;
+} s_network;
 
 NEURON **init__network(size_t nb_ins, size_t nb_col, size_t nb_hne, size_t nb_out)
 {
@@ -61,7 +59,7 @@ NEURON **init__network(size_t nb_ins, size_t nb_col, size_t nb_hne, size_t nb_ou
 double n_output(NEURON **network, size_t neuron_position)
 {
 	NEURON *neuron  = network[neuron_position];
-	
+
 	size_t prev_len = neuron->prev_len;
 	double *weights = neuron->weights;
 	size_t prev     = neuron->prev;
@@ -72,36 +70,33 @@ double n_output(NEURON **network, size_t neuron_position)
 	return sigmoid(retour);
 }
 
-void eval(s_network *c, int prev[])
+void eval(s_network *c, int inputs[])
 {
 	size_t j = 0;
 	//propagation of values
 	for (; j < c->nb_ins ; j++)
-		c->network[j]->val = prev[j];
+		c->network[j]->val = inputs[j];
 
 	for (; j < c->nb_tot ; j++)
 		c->network[j]->val = n_output(c->network, j);
 }
 
-size_t find(s_network *c)
+int find(s_network *c)
 {
-	size_t retour = c->nb_ins + c->nb_col * c->nb_hne;
-	double max    = c->network[retour]->val;
-	for (size_t i = retour + 1; i < c->nb_tot; i++)
+	size_t nb_inside = (c->nb_ins + c->nb_col * c->nb_hne);
+	size_t retour = 0;//c->nb_ins + c->nb_col * c->nb_hne;
+	for (size_t i = retour + 1; i < c->nb_tot - nb_inside; i++)
 	{
-		if ((c->network[i]->val) > max)
-		{
-			max = c->network[i]->val;
+		if ((c->network[nb_inside + i]->val) > c->network[nb_inside + retour]->val)
 			retour = i;
-		}
 	}
-	return retour + c->nb_out - c->nb_tot;
+	return retour;
 }
 
 void free_network(s_network *container)
 {
 	for(size_t count = 0; count < container->nb_tot; count++)
-	{	
+	{
 		free_neuron_content(container->network[count]);
 		free(container->network[count]);
 	}
@@ -132,27 +127,27 @@ size_t find()
 
 /*
 NEURON **init__network()
-{ 
+{
 	size_t nb_tot = nb_ins + nb_col * nb_hne + nb_out;
-	
+
 	NEURON** network = malloc(sizeof(NEURON*) * nb_tot ); //nb of n.
 	size_t count = 0;
 	size_t lvl   = 0;
 
 	//nb of inputs
-	for (; count < nb_ins ; count++)     
+	for (; count < nb_ins ; count++)
 		network[count] = init_neuron(0, 0);
 	//first hidden layer
-	for (; count < nb_ins + nb_hne ; count++) 
+	for (; count < nb_ins + nb_hne ; count++)
 		network[count] = init_neuron(nb_ins, 0);
 	//other hidden layers
-	for (; count < nb_ins + nb_hne * nb_col ; count++){ 
+	for (; count < nb_ins + nb_hne * nb_col ; count++){
 		network[count] = init_neuron(nb_hne, nb_ins + lvl * nb_hne);
 		if (!( (count - 1) % nb_hne))
 			lvl ++;
 	}
 	//output layer
-	for (; count < nb_tot; count++)    
+	for (; count < nb_tot; count++)
 		network[count] = init_neuron(nb_hne , nb_tot - nb_hne - nb_out);
 
 	return network;

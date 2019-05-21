@@ -1,14 +1,14 @@
-# include "RDN_main.h"
+# include "RDN_main_l.h"
 
 #define MAX_EPOCH 5
-//non-changing declare
+// Non-changing declare
 static size_t nb_out;
 static size_t nb_ins;
 static size_t nb_hne;
-static size_t nb_col;// = c->nb_col;
+static size_t nb_col;
 static size_t nb_tot;
 
-void train(s_network *c, size_t nb_training_set, int ***inputs)
+void train(NETWORK *c, size_t nb_training_set, int ***inputs)
 {
 	//double r_results[nb_out];
 
@@ -97,29 +97,30 @@ void train(s_network *c, size_t nb_training_set, int ***inputs)
 }
 
 
-void save(s_network *container)
+void save(NETWORK *c)
 {
-	FILE* fichier = NULL;
-	fichier = fopen("../saved_RDN_LBIW.txt", "w+");
-	rewind(fichier);
+	FILE* f = fopen("../saved_RDN_LBIW.txt", "w+");
+	rewind(f);
 
-	fprintf(fichier, "%zu,%zu,%zu,%.zu\n", container->nb_ins,
-										  container->nb_col,
-										  container->nb_hne,
-										  container->nb_out);
-	for (size_t i = container->nb_ins ; i < container->nb_tot ; i++)
+	fprintf(f, "%zu,%zu,%zu,%.zu\n",
+		c->nb_ins, c->nb_col, c->nb_hne, c->nb_out);
+
+	for (size_t layer_count = 1; layer_count < c->nb_layer; ++layer_count)
 	{
-		fprintf(fichier, "%zu %zu %zu %zu %lf",
-			container->network[i]->prev,
-			container->network[i]->prev_len,
-			container->network[i]->next,
-			container->network[i]->next_len,
-			container->network[i]->bias);
-		for (size_t j = 0 ; j < (container->network[i]->prev_len) ; j++)
-			fprintf(fichier, " %lf", (container->network[i]->weights)[j]);
-		fprintf(fichier, "\n");
+		LAYER *layer = c->layers[layer_count];
+		fprintf(f, "%zu\n", layer->nb_neuron);
+		for (size_t n_count = 0; n_count < layer->nb_neuron; ++n_count)
+		{
+			NEURON *neuron = layer->neurons[n_count];
+			fprintf(f, "%lf %zu",
+				neuron->bias,
+				neuron->weight_len);
+			for (size_t w = 0 ; w < neuron->weight_len; ++w)
+				fprintf(f, " %lf", neuron->weights[w]);
+		fprintf(f, "\n");
+		}
 	}
-	fclose(fichier);
+	fclose(f);
 }
 
 size_t prepare_training(FILE* file)
@@ -132,7 +133,7 @@ size_t prepare_training(FILE* file)
 	return nb_training_set;
 }
 
-int ***open_training(FILE* file, s_network *c, size_t nb_training_set)
+int ***open_training(FILE* file, NETWORK *c, size_t nb_training_set)
 {
 	int ***inputs = malloc(nb_training_set * sizeof(int **));
 	//[nb_training_set][c->nb_out][c->nb_ins]  //* (c->nb_out) * (c->nb_ins)
@@ -156,42 +157,31 @@ int ***open_training(FILE* file, s_network *c, size_t nb_training_set)
 	return inputs;
 }
 
-s_network *config_RDN(FILE* file)
+NETWORK *config_RDN(FILE* file)
 {
-	//size_t nb_ins = 0; size_t nb_col = 0; size_t nb_hne = 0; size_t nb_out = 0;
 	assert(fscanf(file, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out));
 	nb_tot = nb_ins + nb_col * nb_hne + nb_out;
 	printf("%zu\n%zu\n%zu\n%zu\n%zu\n", nb_ins, nb_col, nb_hne, nb_out, nb_tot);
 
-	NEURON **network = init__network(nb_ins, nb_col, nb_hne, nb_out);
-
-	s_network *container = malloc(sizeof(s_network));
-	container->nb_ins = nb_ins;
-	container->nb_col = nb_col;
-	container->nb_hne = nb_hne;
-	container->nb_out = nb_out;
-	container->nb_tot = nb_tot;
-	container->network = network;
-
-	return container;
+	NETWORK *c = init_network(nb_ins, nb_col, nb_hne, nb_out);
+	return c;
 }
 
 int main(void)
 {
-	FILE* file = NULL;
-	file = fopen("training", "r");
+	FILE* file = fopen("training", "r");
 
-	s_network *container   = config_RDN(file);
+	NETWORK *c = config_RDN(file);
 	size_t nb_training_set = prepare_training(file);
-	int ***inputs = open_training(file, container, nb_training_set);
+	int ***inputs = open_training(file, c, nb_training_set);
 	fclose(file);
 
 	srand(time(NULL));
 
 	printf("train\n");
-	train(container, nb_training_set, inputs);
+	train(c, nb_training_set, inputs);
 	printf("save\n");
-	save(container);
+	save(c);
 
 
 	printf("frees\n");
@@ -202,78 +192,6 @@ int main(void)
 		free(inputs[set]);
 	}
 	free(inputs);
-	free_network(container);
-	//free(container->network);
-	//free(container);
+	free_network(c);
 	return 0;
 }
-
-
-
-/*
-size_t nb_ins;
-size_t nb_col;
-size_t nb_hne;
-size_t nb_out;
-size_t nb_tot;
-NEURON **network;
-
-double *inputs;
-size_t nb_training_set;
-*/
-
-
-/*
-arg 1 : nb inputs
-arg 2 & 3 : nb columns and nb neurons in hidden layer
-arg 4 : nb outputs
-*/
-/*
-for (int i = 0 ; i < argc ; i++)
-	printf("Argument %d : %s \n", i+1, argv[i]);
-(void)argv;
-
-if (argc != 3){
-	nb_col = 1;
-	nb_hne = 80;
-}
-else{
-	nb_col = 1;
-	nb_hne = 3;
-	//nb_col = atoi(argv[1]);
-	//nb_hne = atoi(argv[2]);
-}
-
-
-
-int verif(double *tab, size_t len){
-	int check = 1;
-	for (size_t i = 0 ; (i < len) && check; i++) {
-		check = tab[i] > 0.6;
-		//if(i%5 == 0)
-			printf("%f,",tab[i]);
-	}
-	printf("\n");
-	return check;
-	//return tab[0] > 0.9 && tab[1] < 0.1 && tab[2] > 0.9 && tab[3] < 0.1;
-}
-
-int verif_2(s_network *container, size_t wanted){
-	size_t len = container->nb_tot;
-	size_t wanted_adress = container->nb_ins + container->nb_col * container->nb_hne + wanted;
-	double value_of_wanted = container->network[wanted_adress]->val;
-	int is_superior = 1;
-	for (size_t i = len - container->nb_out ; (i < len) && is_superior ; i++)
-		is_superior = value_of_wanted >= container->network[i]->val;
-	return is_superior;
-}
-*/
-
-/*
-
-//propagation of values
-for (; j < nb_ins ; j++)
-	c->network[j]->val = inputs[training_set][out][j]; //(out + (nb_out * training_set)) * nb_ins + j
-
-for (; j < nb_tot ; j++)
-	c->network[j]->val = n_output(c->network, j);*/

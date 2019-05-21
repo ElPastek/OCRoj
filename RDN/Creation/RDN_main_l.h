@@ -1,6 +1,8 @@
+#pragma once
+
 # include <stdio.h>
 # include <stdlib.h>
-# include "network.h"
+# include "network_l.h"
 
 /*
 void train(s_network *c, size_t nb_training_set, double *inputs);

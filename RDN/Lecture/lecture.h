@@ -2,7 +2,7 @@
 # include <stdlib.h>
 # include <math.h>
 
-# include "../network.h"
+# include "network.h"
 
 
 s_network *load_RDN_from_path(char *path)
@@ -72,7 +72,6 @@ void read_RDN(s_network *c, char *mode)
         {
             inputs[j] = fgetc(fichier_I) - 48;
         }
-        //printf("\n");
         eval(c, inputs);
         size_t found = find(c);
         charac = trans(found, mode);

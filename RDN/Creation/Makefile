@@ -2,8 +2,7 @@
 # -O2
 
 CC=gcc
-CFLAGS= -Wall -Wextra -pedantic -std=c99 -g -I.. 
-#-fsanitize=address
+CFLAGS= -Wall -Wextra -pedantic -std=c99 -I..
 LDLIBS= -lm
 
 SRC= RDN_main.c

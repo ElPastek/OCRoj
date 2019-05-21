@@ -2,8 +2,8 @@
 
 
 CC=gcc
-CFLAGS= -Wall -Wextra -pedantic -std=c99 -g -fsanitize=address
-LDLIBS= -lasan -lm
+CFLAGS= -Wall -Wextra -pedantic -std=c99 -g
+LDLIBS= -lm
 
 SRC= lecture.c
 PRG= ${SRC:.c=}
