@@ -34,13 +34,13 @@ typedef struct neuron
 } NEURON;
 
 
-void*init_neuron(size_t prev_len, double *weights, double bias)
+NEURON* init_neuron(size_t prev_len, double *weights, double bias)
 {
 	NEURON *neuron = (NEURON*)malloc(sizeof(NEURON));
 	// Not first layer ?
 	if (prev_len != 0 && weights == NULL)
 	{
-		weights = (double*)malloc(prev_len * sizeof(double));
+		weights = (double*) malloc(prev_len * sizeof(double));
 		for (size_t i = 0 ; i < prev_len ; i++)
 			(neuron -> weights)[i] = NormalDistribution(0, 1 / sqrt(prev_len));
 	}

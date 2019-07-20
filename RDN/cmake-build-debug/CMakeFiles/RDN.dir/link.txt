@@ -1,3 +1,0 @@
-"D:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\RDN.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\RDN.dir/objects.a @CMakeFiles\RDN.dir\objects1.rsp
-C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\RDN.dir/objects.a -Wl,--no-whole-archive  -o RDN.exe -Wl,--out-implib,libRDN.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\RDN.dir\linklibs.rsp

@@ -14,8 +14,8 @@ s_network *load_RDN_from_path(char *path)
     size_t nb_ins; size_t nb_col; size_t nb_hne; size_t nb_out;
     assert(fscanf(file, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out));
     size_t nb_tot = nb_ins + nb_col * nb_hne + nb_out;
-	
-	printf(" nb_ins: %zu\n  nb_col: %zu\n  nb_hne: %zu\n  nb_out: %zu\n  nbtot: %zu\n", 
+
+	printf(" nb_ins: %zu\n  nb_col: %zu\n  nb_hne: %zu\n  nb_out: %zu\n  nbtot: %zu\n",
 			nb_ins, nb_col, nb_hne, nb_out, nb_tot);
 
     NEURON **network = malloc(sizeof(NEURON*) * nb_tot );

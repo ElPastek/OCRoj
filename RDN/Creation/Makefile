@@ -2,10 +2,10 @@
 # -O2
 
 CC=gcc
-CFLAGS= -Wall -Wextra -pedantic -std=c99 -I..
+CFLAGS= -Wall -Wextra -pedantic -std=c99 -I../network
 LDLIBS= -lm
 
-SRC= RDN_main.c
+SRC= RDN_main_l.c
 PRG= ${SRC:.c=}
 
 all: ${PRG}
