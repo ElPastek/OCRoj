@@ -5,14 +5,18 @@
 
 #define ALPHA_LEARNING_RATE 0.05
 
-double derivative(double x)
+double sigmoid(double x)
+{
+	return 1.0 / (1.0 + exp(-x));
+}
+double derivative_old(double x)
 {
 	return x * (1.0 - x);
 }
 
-double sigmoid(double x)
+double derivative(double x)
 {
-	return 1.0 / (1.0 + exp(-x));
+	return sigmoid(x) * (1 - sigmoid(x));
 }
 
 typedef struct layer

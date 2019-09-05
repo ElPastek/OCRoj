@@ -27,7 +27,7 @@ void train(NETWORK *c, size_t nb_training_set, int ***inputs)
 				update_weights(c);
 
 				//**verification**
-				char waited = (char)(out) +33;
+				char waited = (char)(out) + 33;
 				char real   = (char)(find(c)) + 33;
 				printf("out: %zu scan: %zu ", out, out + (training_set * c->nb_out));
 				printf(" %c -> %c   e : %d\n", waited, real, epoch);
@@ -86,7 +86,7 @@ size_t prepare_training(FILE* file)
 {
 	size_t nb_training_set;
 
-	assert(fscanf(file, "%zu", &nb_training_set));
+	fscanf(file, "%zu", &nb_training_set);
 
 	printf("NB_TRAINING: %zu\n", nb_training_set);
 	return nb_training_set;
@@ -123,11 +123,13 @@ NETWORK *config_RDN(FILE* file)
 	size_t nb_ins;
 	size_t nb_hne;
 	size_t nb_col;
+	printf("Retreiving network meta data\n");
 	assert(fscanf(file, "%zu,%zu,%zu,%zu", &nb_ins, &nb_col, &nb_hne, &nb_out));
 	size_t nb_tot = nb_ins + nb_col * nb_hne + nb_out;
 	printf("%zu\n%zu\n%zu\n%zu\n%zu\n", nb_ins, nb_col, nb_hne, nb_out, nb_tot);
-
+	printf("Init network...\n");
 	NETWORK *c = init_network(nb_ins, nb_col, nb_hne, nb_out);
+	printf("Init done\n");
 	return c;
 }
 
